@@ -1,49 +1,25 @@
-name: Amadeus Media API
-description: APIs for accessing Amadeus media and content services
-image: https://amadeus.com/images/en/logo-amadeus.svg
-url: https://developers.amadeus.com
-created: '2024'
-modified: '2024'
-specificationVersion: '0.18'
-apis:
-- name: Amadeus Media API
-  description: API for accessing travel-related media content including hotel images, descriptions, and multimedia assets
-  image: https://amadeus.com/images/en/logo-amadeus.svg
-  humanURL: https://developers.amadeus.com
-  baseURL: https://api.amadeus.com/v1
-  tags:
+aid: amadeus-media
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/amadeus-media/refs/heads/main/apis.yml
+name: Amadeus Media
+tags:
   - Travel
   - Media
   - Hotels
   - Images
   - Content
-  properties:
-  - type: Documentation
-    url: https://developers.amadeus.com/self-service/category/hotels/api-doc/hotel-media
-  - type: OpenAPI
-    url: https://developers.amadeus.com/self-service/swagger
-  - type: Authentication
-    url: https://developers.amadeus.com/self-service/apis-docs/guides/authorization
-  - type: Terms of Service
-    url: https://developers.amadeus.com/terms-of-use
-  - type: Sign Up
-    url: https://developers.amadeus.com/register
-  - type: Pricing
-    url: https://developers.amadeus.com/pricing
-  - type: Getting Started
-    url: https://developers.amadeus.com/get-started/get-started-with-self-service-apis
-  - type: Contact
-    url: https://developers.amadeus.com/support
-maintainers:
-- name: Amadeus for Developers
-  email: developers@amadeus.com
-  url: https://developers.amadeus.com
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+description: >-
+  APIs for accessing Amadeus media and content services including travel-related
+  media content such as hotel images, descriptions, and multimedia assets.
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis: []
 common:
-- type: Portal
-  url: https://developers.amadeus.com
-- type: Blog
-  url: https://developers.amadeus.com/blog
-- type: Status
-  url: https://developers.amadeus.com/status
-- type: SDK
-  url: https://github.com/amadeus4dev
+  - url: https://developers.amadeus.com/
+    type: Portal
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
