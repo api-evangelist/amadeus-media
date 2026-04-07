@@ -3,11 +3,11 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/amadeus-media/refs/heads/main/apis.yml
 name: Amadeus Media
 tags:
-  - Travel
-  - Media
+  - Content
   - Hotels
   - Images
-  - Content
+  - Media
+  - Travel
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 description: >-
