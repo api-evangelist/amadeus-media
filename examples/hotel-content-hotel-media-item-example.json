@@ -1,0 +1,11 @@
+{
+  "id": "media-001",
+  "category": "EXTERIOR",
+  "uri": "https://media.amadeus.com/hotels/MCLONGHM/exterior-01.jpg",
+  "thumbnailUri": "https://media.amadeus.com/hotels/MCLONGHM/exterior-01-thumb.jpg",
+  "caption": "Hotel Exterior View",
+  "width": 1920,
+  "height": 1080,
+  "format": "JPEG",
+  "isPrimary": true
+}

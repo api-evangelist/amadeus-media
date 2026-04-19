@@ -1,0 +1,16 @@
+{
+  "errors": [
+    {
+      "status": 373,
+      "code": 922,
+      "title": "sample-value",
+      "detail": "sample-value",
+      "source": {
+        "parameter": "sample-value",
+        "pointer": "sample-value",
+        "example": "sample-value"
+      },
+      "documentation": "sample-value"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amadeus-media/refs/heads/main/json-structure/hotel-content-media-asset-structure.json",
+  "name": "MediaAsset",
+  "description": "A single media asset (image or video) for a hotel property.",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "Media category.",
+      "enum": [
+        "EXTERIOR",
+        "LOBBY",
+        "ROOM",
+        "RESTAURANT",
+        "POOL",
+        "SPA",
+        "GYM",
+        "MEETING_ROOM",
+        "COMMON_AREA"
+      ],
+      "example": "EXTERIOR"
+    },
+    "uri": {
+      "type": "uri",
+      "description": "URL of the full-size media asset.",
+      "example": "https://media.amadeus.com/hotels/MCLONGHM/exterior-01.jpg"
+    },
+    "caption": {
+      "type": "string",
+      "description": "Caption or alt text for the media asset.",
+      "example": "Hotel Exterior"
+    }
+  }
+}

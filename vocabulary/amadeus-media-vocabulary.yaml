@@ -1,0 +1,274 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Amadeus Media
+  description: >-
+    Vocabulary capturing the taxonomy of the Amadeus Media API surface, covering
+    hotel content, media assets, and property data operations along with
+    capability workflows for travel platform developers.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: hotel-content
+      name: Hotel Content API
+      version: "1.0.0"
+      baseUrl: https://api.amadeus.com/v1
+      status: active
+    - namespace: hotel-list
+      name: Hotel List API
+      version: "1.0.4"
+      baseUrl: https://test.api.amadeus.com/v1
+      status: active
+
+  resources:
+    - name: hotels
+      description: Hotel property records with identifiers, names, and addresses.
+      apis:
+        - hotel-list
+      actions:
+        - search-by-city
+        - search-by-geocode
+        - search-by-hotel-ids
+    - name: hotel-content
+      description: Rich hotel property content including descriptions, amenities, and contact.
+      apis:
+        - hotel-content
+      actions:
+        - get
+    - name: hotel-media
+      description: Hotel media assets including images and videos by category.
+      apis:
+        - hotel-content
+      actions:
+        - get
+        - filter-by-category
+
+  actions:
+    - name: get
+      description: Retrieve a single resource by identifier.
+      httpMethod: GET
+      pattern: read
+    - name: search-by-city
+      description: Find hotels within a city using IATA city code.
+      httpMethod: GET
+      pattern: query
+    - name: search-by-geocode
+      description: Find hotels near geographic coordinates.
+      httpMethod: GET
+      pattern: query
+    - name: search-by-hotel-ids
+      description: Retrieve hotel data for specific Amadeus property codes.
+      httpMethod: GET
+      pattern: query
+    - name: filter-by-category
+      description: Filter media assets by category type (EXTERIOR, LOBBY, ROOM, etc.).
+      httpMethod: GET
+      pattern: query
+
+  schemas:
+    core:
+      - name: HotelContent
+        description: Complete hotel property information.
+        keyProperties:
+          - hotelId
+          - name
+          - iataCode
+          - chainCode
+      - name: MediaAsset
+        description: A single hotel media asset with URL and category.
+        keyProperties:
+          - category
+          - uri
+          - caption
+      - name: HotelMediaItem
+        description: Detailed media item with dimensions and format.
+        keyProperties:
+          - id
+          - uri
+          - width
+          - height
+          - format
+      - name: GeoCode
+        description: Geographic coordinates for a hotel.
+        keyProperties:
+          - latitude
+          - longitude
+    content:
+      - name: HotelDescription
+        description: Localized hotel description text.
+        keyProperties:
+          - lang
+          - text
+      - name: HotelBasicInfo
+        description: Hotel classification and operational info.
+        keyProperties:
+          - category
+          - rating
+          - numberOfRooms
+      - name: HotelContact
+        description: Hotel contact information.
+        keyProperties:
+          - phone
+          - email
+          - website
+      - name: HotelAddress
+        description: Physical hotel address.
+        keyProperties:
+          - lines
+          - postalCode
+          - cityName
+          - countryCode
+
+  parameters:
+    identifiers:
+      - name: hotelIds
+        description: Amadeus property codes (8 characters) for hotel identification.
+      - name: hotelId
+        description: Single Amadeus property code.
+    filters:
+      - name: cityCode
+        description: IATA city code for location-based hotel search.
+      - name: category
+        description: Media category filter (EXTERIOR, LOBBY, ROOM, etc.).
+      - name: format
+        description: Image format filter (JPEG, PNG, WEBP).
+      - name: language
+        description: Language code for content localization.
+      - name: fields
+        description: Comma-separated content field selection.
+    geolocation:
+      - name: latitude
+        description: Latitude in decimal degrees for proximity search.
+      - name: longitude
+        description: Longitude in decimal degrees for proximity search.
+      - name: radius
+        description: Search radius in kilometers or miles.
+
+  enums:
+    mediaCategories:
+      - EXTERIOR
+      - LOBBY
+      - ROOM
+      - RESTAURANT
+      - POOL
+      - SPA
+      - GYM
+      - MEETING_ROOM
+      - COMMON_AREA
+    imageFormats:
+      - JPEG
+      - PNG
+      - WEBP
+    hotelRatings:
+      - ONE_STAR
+      - TWO_STARS
+      - THREE_STARS
+      - FOUR_STARS
+      - FIVE_STARS
+    languages:
+      - EN
+      - FR
+      - DE
+      - ES
+      - IT
+      - PT
+      - ZH
+      - JA
+      - KO
+      - AR
+
+  authentication:
+    schemes:
+      - type: bearer
+        description: OAuth2 Bearer token obtained from Amadeus Authorization API.
+        tokenEndpoint: https://test.api.amadeus.com/v1/security/oauth2/token
+    apis:
+      - hotel-content
+      - hotel-list
+
+capability:
+  workflows:
+    - name: Hotel Media Discovery
+      file: capabilities/hotel-media-discovery.yaml
+      description: >-
+        Combines Hotel List and Hotel Content APIs for comprehensive hotel
+        property discovery with rich media retrieval.
+      apisComined:
+        - Hotel Content API
+        - Hotel List API
+      toolCount: 4
+      personas:
+        - Travel Platform Developer
+        - OTA Content Team
+
+  personas:
+    - id: travel-platform-developer
+      name: Travel Platform Developer
+      description: Developer building hotel search and booking experiences requiring property data and media.
+      workflows:
+        - Hotel Media Discovery
+    - id: ota-content-team
+      name: OTA Content Team
+      description: Content team maintaining hotel profiles, photos, and descriptions on online travel agencies.
+      workflows:
+        - Hotel Media Discovery
+
+  domains:
+    - name: Hotel Content
+      description: Hotel property information, descriptions, and classifications.
+      resources:
+        - hotel-content
+        - hotels
+    - name: Hotel Media
+      description: Visual media assets including photos and videos for hotel properties.
+      resources:
+        - hotel-media
+
+  namespaces:
+    consumed:
+      - hotel-content
+      - hotel-list
+    rest:
+      - hotel-media-discovery-api (port 8080)
+      - hotel-content-api (port 8100)
+      - hotel-list-api (port 8101)
+    mcp:
+      - hotel-media-discovery-mcp (port 9090)
+      - hotel-content-mcp (port 9100)
+      - hotel-list-mcp (port 9101)
+
+  binds:
+    - AMADEUS_API_KEY
+    - AMADEUS_API_SECRET
+    - AMADEUS_BEARER_TOKEN
+
+crossReference:
+  - resource: hotels
+    operations:
+      - search-by-city
+      - search-by-geocode
+      - search-by-hotel-ids
+    workflows:
+      - Hotel Media Discovery
+    personas:
+      - Travel Platform Developer
+      - OTA Content Team
+  - resource: hotel-content
+    operations:
+      - get
+    workflows:
+      - Hotel Media Discovery
+    personas:
+      - Travel Platform Developer
+      - OTA Content Team
+  - resource: hotel-media
+    operations:
+      - get
+      - filter-by-category
+    workflows:
+      - Hotel Media Discovery
+    personas:
+      - Travel Platform Developer
+      - OTA Content Team

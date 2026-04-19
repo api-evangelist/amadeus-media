@@ -1,0 +1,137 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Amadeus Hotel Media Discovery
+  description: >-
+    Workflow capability for discovering and retrieving hotel media content, combining the Hotel List API for property discovery with the Hotel Content API for rich media retrieval. Used by travel platform developers, OTA content teams, and hospitality technology teams building hotel profile pages.
+  tags:
+    - Amadeus
+    - Hotels
+    - Media
+    - Content
+    - Travel
+    - Images
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AMADEUS_API_KEY: AMADEUS_API_KEY
+      AMADEUS_API_SECRET: AMADEUS_API_SECRET
+      AMADEUS_BEARER_TOKEN: AMADEUS_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: hotel-content
+      location: ./shared/hotel-content.yaml
+    - import: hotel-list
+      location: ./shared/hotel-list.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: hotel-media-discovery-api
+      description: Unified REST API for hotel property discovery and media retrieval.
+      resources:
+        - path: /v1/hotels
+          name: hotels
+          description: Hotel discovery and search.
+          operations:
+            - method: GET
+              name: get-hotels-by-city
+              description: Find hotels in a city by IATA code.
+              call: "hotel-list.get-hotels-by-city"
+              with:
+                cityCode: "rest.cityCode"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-hotels-by-geocode
+              description: Find hotels near geographic coordinates.
+              call: "hotel-list.get-hotels-by-geocode"
+              with:
+                latitude: "rest.latitude"
+                longitude: "rest.longitude"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/hotels/{hotelId}/content
+          name: hotel-content
+          description: Hotel property content and descriptions.
+          operations:
+            - method: GET
+              name: get-hotel-content
+              description: Get detailed hotel property content.
+              call: "hotel-content.get-hotel-content"
+              with:
+                hotelIds: "rest.hotelId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/hotels/{hotelId}/media
+          name: hotel-media
+          description: Hotel media assets including images.
+          operations:
+            - method: GET
+              name: get-hotel-media
+              description: Get hotel photos and media assets.
+              call: "hotel-content.get-hotel-media"
+              with:
+                hotelIds: "rest.hotelId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: hotel-media-discovery-mcp
+      transport: http
+      description: MCP server for AI-assisted hotel content and media discovery.
+      tools:
+        - name: find-hotels-by-city
+          description: Find hotels in a city using its IATA code for content and media retrieval.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "hotel-list.get-hotels-by-city"
+          with:
+            cityCode: "tools.cityCode"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: find-hotels-by-location
+          description: Find hotels near a geographic location using latitude and longitude coordinates.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "hotel-list.get-hotels-by-geocode"
+          with:
+            latitude: "tools.latitude"
+            longitude: "tools.longitude"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-hotel-details
+          description: Retrieve rich hotel property content including descriptions, amenities, address, and contact information.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "hotel-content.get-hotel-content"
+          with:
+            hotelIds: "tools.hotelIds"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-hotel-photos
+          description: Retrieve hotel photos and media assets organized by category (exterior, lobby, rooms, restaurant, pool, spa).
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "hotel-content.get-hotel-media"
+          with:
+            hotelIds: "tools.hotelIds"
+          outputParameters:
+            - type: object
+              mapping: "$."

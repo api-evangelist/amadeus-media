@@ -1,0 +1,21 @@
+{
+  "hotelId": "MCLONGHM",
+  "chainCode": "MC",
+  "iataCode": "LON",
+  "name": "THE LONGCHAMP HOTEL",
+  "basicInfo": "sample-value",
+  "descriptions": [
+    "A comfortable hotel with excellent amenities and service."
+  ],
+  "contact": "sample-value",
+  "address": "sample-value",
+  "geoCode": "MC",
+  "amenities": [
+    "WIFI",
+    "RESTAURANT",
+    "SPA"
+  ],
+  "media": [
+    "sample-value"
+  ]
+}

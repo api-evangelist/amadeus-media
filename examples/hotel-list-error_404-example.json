@@ -1,0 +1,16 @@
+{
+  "errors": [
+    {
+      "status": 763,
+      "code": 447,
+      "title": "sample-value",
+      "detail": "sample-value",
+      "source": {
+        "parameter": "sample-value",
+        "pointer": "sample-value",
+        "example": "sample-value"
+      },
+      "documentation": "sample-value"
+    }
+  ]
+}

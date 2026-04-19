@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amadeus-media/refs/heads/main/json-structure/hotel-content-hotel-media-item-structure.json",
+  "name": "HotelMediaItem",
+  "description": "A detailed media item with dimensions and format information.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the media item.",
+      "example": "media-001"
+    },
+    "category": {
+      "type": "string",
+      "description": "Media category type.",
+      "example": "EXTERIOR"
+    },
+    "uri": {
+      "type": "uri",
+      "description": "URL of the full-size image.",
+      "example": "https://media.amadeus.com/hotels/MCLONGHM/exterior-01.jpg"
+    },
+    "thumbnailUri": {
+      "type": "uri",
+      "description": "URL of the thumbnail image.",
+      "example": "https://media.amadeus.com/hotels/MCLONGHM/exterior-01-thumb.jpg"
+    },
+    "caption": {
+      "type": "string",
+      "description": "Image caption or alt text.",
+      "example": "Hotel Exterior View"
+    },
+    "width": {
+      "type": "int32",
+      "description": "Image width in pixels.",
+      "example": 1920
+    },
+    "height": {
+      "type": "int32",
+      "description": "Image height in pixels.",
+      "example": 1080
+    },
+    "format": {
+      "type": "string",
+      "description": "Image format.",
+      "enum": [
+        "JPEG",
+        "PNG",
+        "WEBP"
+      ],
+      "example": "JPEG"
+    },
+    "isPrimary": {
+      "type": "boolean",
+      "description": "Indicates whether this is the primary/featured image for this category.",
+      "example": true
+    }
+  }
+}

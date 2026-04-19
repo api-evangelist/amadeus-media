@@ -11,15 +11,211 @@ tags:
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 description: >-
-  APIs for accessing Amadeus media and content services including travel-related
-  media content such as hotel images, descriptions, and multimedia assets.
+  Amadeus Media provides APIs and data services for accessing travel-related
+  media content, including hotel images, property descriptions, multimedia
+  assets, and rich content for hospitality and travel applications. Amadeus
+  partners with trusted content providers such as Leonardo to deliver
+  high-quality hotel media through enterprise-grade APIs used by online travel
+  agencies, metasearch platforms, and hospitality technology providers.
 created: '2024-01-01'
-modified: '2026-03-16'
+modified: '2026-04-19'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: amadeus-media:hotel-content-api
+    name: Hotel Content API
+    description: >-
+      The Amadeus Hotel Content API provides detailed property information
+      including descriptions, amenities, facilities, contact details, and media
+      assets such as images and multimedia content for hotels in the Amadeus
+      inventory. Available through Amadeus Enterprise APIs, this API enables
+      travel platforms to display rich hotel profiles with photos, room images,
+      and property descriptions.
+    humanURL: https://developers.amadeus.com/enterprise/category/hotel/api/content
+    baseURL: https://api.amadeus.com
+    tags:
+      - Content
+      - Hotels
+      - Images
+      - Media
+      - Travel
+    properties:
+      - type: Documentation
+        url: https://developers.amadeus.com/enterprise/category/hotel/api/content
+      - type: OpenAPI
+        url: openapi/amadeus-media-hotel-content-openapi.yaml
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-content-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-content-response-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-media-response-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-media-item-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-media-asset-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-basic-info-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-description-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-contact-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-address-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-geo-code-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-content-hotel-media-data-schema.json
+      - type: JSONStructure
+        url: json-structure/hotel-content-hotel-content-structure.json
+      - type: JSONStructure
+        url: json-structure/hotel-content-hotel-content-response-structure.json
+      - type: JSONStructure
+        url: json-structure/hotel-content-hotel-media-response-structure.json
+      - type: JSONLD
+        url: json-ld/amadeus-hotel-content-context.jsonld
+  - aid: amadeus-media:hotel-list-api
+    name: Hotel List API
+    description: >-
+      The Amadeus Hotel List API returns hotel property data including name,
+      address, geographic coordinates, and time zone for each hotel bookable
+      through Amadeus. This API is the starting point for building hotel search
+      experiences and retrieving the property identifiers needed to fetch hotel
+      media and offers.
+    humanURL: https://developers.amadeus.com/self-service/category/hotels/api-doc/hotel-list
+    baseURL: https://test.api.amadeus.com/v1
+    tags:
+      - Content
+      - Hotels
+      - Listings
+      - Travel
+    properties:
+      - type: Documentation
+        url: https://developers.amadeus.com/self-service/category/hotels/api-doc/hotel-list
+      - type: APIReference
+        url: https://developers.amadeus.com/self-service/category/hotels/api-doc/hotel-list/api-reference
+      - type: OpenAPI
+        url: openapi/amadeus-media-hotel-list-openapi.yaml
+      - type: JSONSchema
+        url: json-schema/hotel-list-hotel-schema.json
+      - type: JSONSchema
+        url: json-schema/hotel-list-hotel-search-response-schema.json
+      - type: JSONStructure
+        url: json-structure/hotel-list-hotel-structure.json
+      - type: JSONStructure
+        url: json-structure/hotel-list-hotel-search-response-structure.json
+      - type: JSONLD
+        url: json-ld/amadeus-hotel-list-context.jsonld
 common:
-  - url: https://developers.amadeus.com/
-    type: Portal
+  - type: Portal
+    url: https://developers.amadeus.com/
+  - type: GettingStarted
+    url: https://developers.amadeus.com/self-service/apis-docs/guides/developer-guides/
+  - type: Authentication
+    url: https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+  - type: SignUp
+    url: https://developers.amadeus.com/register
+  - type: Pricing
+    url: https://developers.amadeus.com/pricing
+  - type: Blog
+    url: https://developers.amadeus.com/blog
+  - type: FAQ
+    url: https://developers.amadeus.com/self-service/apis-docs/guides/developer-guides/faq/
+  - type: Support
+    url: https://developers.amadeus.com/support
+  - type: TermsOfService
+    url: https://developers.amadeus.com/legal/terms-and-conditions
+  - type: PrivacyPolicy
+    url: https://developers.amadeus.com/legal/privacy-policy
+  - type: GitHubOrganization
+    url: https://github.com/amadeus4dev
+  - type: SDK
+    url: https://github.com/amadeus4dev/amadeus-python
+    title: Python SDK
+  - type: SDK
+    url: https://github.com/amadeus4dev/amadeus-node
+    title: Node.js SDK
+  - type: SDK
+    url: https://github.com/amadeus4dev/amadeus-java
+    title: Java SDK
+  - type: StatusPage
+    url: https://developers.amadeus.com/status
+  - type: SpectralRules
+    url: rules/amadeus-media-spectral-rules.yml
+  - type: NaftikoCapability
+    url: capabilities/hotel-media-discovery.yaml
+  - type: Vocabulary
+    url: vocabulary/amadeus-media-vocabulary.yaml
+  - type: Features
+    data:
+      - name: Hotel Property Images
+        description: >-
+          Access high-quality images and multimedia assets for hotel properties
+          through the Enterprise Hotel Content API and trusted content partners
+          like Leonardo.
+      - name: Rich Property Descriptions
+        description: >-
+          Retrieve detailed hotel descriptions, amenity lists, facility
+          information, and property attributes for comprehensive hotel profiles.
+      - name: Geolocation Data
+        description: >-
+          Access geographic coordinates, addresses, and time zones for over
+          770,000 hotels in the Amadeus global inventory.
+      - name: Enterprise Content Access
+        description: >-
+          Enterprise API tier provides access to detailed hotel content
+          including media that is not available in self-service APIs due to
+          licensing constraints.
+      - name: Multi-Language Support
+        description: >-
+          Hotel content and descriptions available in multiple languages to
+          support international travel applications and global markets.
+  - type: UseCases
+    data:
+      - name: Online Travel Agency Hotel Listings
+        description: >-
+          Power hotel search pages with rich property photos, descriptions, and
+          amenity information sourced directly from Amadeus content services.
+      - name: Metasearch Platform Integration
+        description: >-
+          Integrate Amadeus hotel content into metasearch engines to display
+          property images and descriptions alongside rate comparisons.
+      - name: Hotel Booking Engine Content
+        description: >-
+          Enhance hotel booking flows with compelling property imagery and
+          detailed descriptions to improve conversion rates.
+      - name: Travel App Media Display
+        description: >-
+          Display hotel photos and media in mobile travel apps to give users
+          visual context when browsing and booking accommodation.
+      - name: Corporate Travel Platform
+        description: >-
+          Provide hotel content and imagery in corporate travel management
+          systems to help business travelers make informed accommodation
+          decisions.
+  - type: Integrations
+    data:
+      - name: Leonardo (Hotel Images)
+        description: >-
+          Amadeus recommends Leonardo as the trusted data provider for hotel
+          images and property media, offering a comprehensive library of hotel
+          photography.
+      - name: Google Places API
+        description: >-
+          Developers can supplement Amadeus hotel data with Google Places API
+          to retrieve hotel images and business information for properties in
+          the Amadeus inventory.
+      - name: Amadeus Hotel Search API
+        description: >-
+          Combine with Amadeus Hotel Search to display media alongside hotel
+          offers and pricing for a complete shopping experience.
+      - name: Amadeus Hotel Booking API
+        description: >-
+          Integrate hotel content with the booking flow to present property
+          images and descriptions before and during the reservation process.
+      - name: Amadeus Hotel Ratings API
+        description: >-
+          Pair hotel media with sentiment-based ratings to create compelling
+          hotel profile pages that combine visual content with review insights.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
