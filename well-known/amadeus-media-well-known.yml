@@ -1,0 +1,52 @@
+generated: '2026-06-20'
+method: searched
+source: probed /.well-known/* on API base hosts and the developer portal host
+notes: >-
+  No machine-readable discovery documents were served. The Amadeus API hosts
+  (api.amadeus.com, test.api.amadeus.com) return 404 for all probed
+  /.well-known/ paths. The developer portal (developers.amadeus.com) is a
+  single-page app whose server returns the HTML index (HTTP 200) for every
+  path, so its "200" responses are not genuine well-known documents and were
+  not saved.
+hosts:
+  - host: https://api.amadeus.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://test.api.amadeus.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://developers.amadeus.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        note: SPA HTML catch-all, not a real security.txt
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: SPA HTML catch-all, not OIDC metadata
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        note: SPA HTML catch-all, not RFC 8414 metadata
+      - path: /.well-known/api-catalog
+        status: 200
+        note: SPA HTML catch-all, not an api-catalog
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        note: SPA HTML catch-all, not an ai-plugin manifest

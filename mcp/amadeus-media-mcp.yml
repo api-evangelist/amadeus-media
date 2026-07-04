@@ -1,0 +1,31 @@
+generated: '2026-06-20'
+method: derived
+status: candidate
+source: >-
+  Derived from openapi/amadeus-media-hotel-content-openapi.yaml and
+  openapi/amadeus-media-hotel-list-openapi.yaml. No official hosted or remote
+  Amadeus MCP server was found in the Amadeus docs, npm @modelcontextprotocol,
+  or public MCP registries as of this round.
+server:
+  name: amadeus-media
+  transport: http
+tools:
+  - name: get_hotel_content
+    description: >-
+      Return detailed content for one or more hotels including descriptions,
+      amenities, facilities, contact info, geolocation, and media assets.
+    source_operation: openapi/amadeus-media-hotel-content-openapi.yaml#getHotelContent
+  - name: get_hotel_media
+    description: >-
+      Return media assets (images, videos) for one or more hotels, categorized
+      by type with dimensions and format information.
+    source_operation: openapi/amadeus-media-hotel-content-openapi.yaml#getHotelMedia
+  - name: search_hotels_by_hotel_ids
+    description: Look up hotel property data by one or more Amadeus property codes.
+    source_operation: openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-by-hotels
+  - name: search_hotels_by_city
+    description: Search hotels in a city by IATA city/airport code with optional filters.
+    source_operation: openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-by-city
+  - name: search_hotels_by_geocode
+    description: Search hotels around a latitude/longitude within a radius.
+    source_operation: openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-geocodes

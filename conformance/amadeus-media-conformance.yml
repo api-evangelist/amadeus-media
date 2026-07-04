@@ -1,0 +1,45 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from openapi/amadeus-media-hotel-content-openapi.yaml and
+  openapi/amadeus-media-hotel-list-openapi.yaml plus Amadeus authorization
+  documentation (https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262).
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Amadeus uses OAuth2 client-credentials access tokens obtained from
+      /v1/security/oauth2/token; OpenAPI declares a bearer HTTP security scheme
+      documented as an OAuth2 bearer token.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery or ID tokens; token endpoint is OAuth2 only.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use the Amadeus vendor media type application/vnd.amadeus+json with
+      an errors[] array (status/code/title/detail/source), not
+      application/problem+json.
+  - id: json-api
+    conforms: false
+    evidence: >-
+      Responses resemble JSON:API loosely (data[] + meta with links) but do not
+      declare the application/vnd.api+json media type or full JSON:API structure.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Responses include meta.links (self/first/prev/next/last) for navigation on
+      the Hotel List API.
+  - id: idempotency
+    conforms: false
+    evidence: All operations are GET (naturally idempotent); no Idempotency-Key header defined.
+  - id: fhir-r4
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: scim
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: psd2
+    conforms: false

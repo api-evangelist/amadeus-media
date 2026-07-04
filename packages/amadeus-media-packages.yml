@@ -1,0 +1,44 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://www.npmjs.com/package/amadeus, https://pypi.org/project/amadeus/,
+  https://rubygems.org/gems/amadeus, https://search.maven.org/artifact/com.amadeus/amadeus-java
+notes: >-
+  Official Amadeus for Developers SDKs published under the amadeus4dev GitHub
+  organization. These are general Amadeus Self-Service SDKs that cover the
+  Hotel List API used by this repo; the Enterprise Hotel Content API is not
+  wrapped by a dedicated first-party SDK. No NuGet/crates.io/Packagist/Go
+  first-party client library was found.
+packages:
+  - language: javascript
+    registry: npm
+    name: amadeus
+    version: 11.0.0
+    url: https://www.npmjs.com/package/amadeus
+    repository: https://github.com/amadeus4dev/amadeus-node
+    install: npm install amadeus
+    official: true
+  - language: python
+    registry: pypi
+    name: amadeus
+    version: 12.0.0
+    url: https://pypi.org/project/amadeus/
+    repository: https://github.com/amadeus4dev/amadeus-python
+    install: pip install amadeus
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: amadeus
+    version: 5.2.1
+    url: https://rubygems.org/gems/amadeus
+    repository: https://github.com/amadeus4dev/amadeus-ruby
+    install: gem install amadeus
+    official: true
+  - language: java
+    registry: maven-central
+    name: com.amadeus:amadeus-java
+    version: 10.0.0
+    url: https://central.sonatype.com/artifact/com.amadeus/amadeus-java
+    repository: https://github.com/amadeus4dev/amadeus-java
+    install: 'implementation "com.amadeus:amadeus-java:10.0.0"'
+    official: true

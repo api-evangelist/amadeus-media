@@ -18,7 +18,7 @@ description: >-
   high-quality hotel media through enterprise-grade APIs used by online travel
   agencies, metasearch platforms, and hospitality technology providers.
 created: '2024-01-01'
-modified: '2026-04-19'
+modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
   - aid: amadeus-media:hotel-content-api
@@ -73,6 +73,8 @@ apis:
         url: json-structure/hotel-content-hotel-media-response-structure.json
       - type: JSONLD
         url: json-ld/amadeus-hotel-content-context.jsonld
+      - type: Overlay
+        url: overlays/amadeus-media-hotel-content-overlay.yaml
   - aid: amadeus-media:hotel-list-api
     name: Hotel List API
     description: >-
@@ -105,6 +107,8 @@ apis:
         url: json-structure/hotel-list-hotel-search-response-structure.json
       - type: JSONLD
         url: json-ld/amadeus-hotel-list-context.jsonld
+      - type: Overlay
+        url: overlays/amadeus-media-hotel-list-overlay.yaml
 common:
   - type: Portal
     url: https://developers.amadeus.com/
@@ -145,6 +149,20 @@ common:
     url: capabilities/hotel-media-discovery.yaml
   - type: Vocabulary
     url: vocabulary/amadeus-media-vocabulary.yaml
+  - type: Packages
+    url: packages/amadeus-media-packages.yml
+  - type: WellKnown
+    url: well-known/amadeus-media-well-known.yml
+  - type: MCPServer
+    url: mcp/amadeus-media-mcp.yml
+  - type: LLMsTxt
+    url: llms/amadeus-media-llms.txt
+  - type: Conformance
+    url: conformance/amadeus-media-conformance.yml
+  - type: ErrorCatalog
+    url: errors/amadeus-media-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/amadeus-media-lifecycle.yml
   - type: Features
     data:
       - name: Hotel Property Images

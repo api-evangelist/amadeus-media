@@ -1,0 +1,36 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Amadeus Hotel List API
+  version: 1.0.0
+extends: openapi/amadeus-media-hotel-list-openapi.yaml
+x-provenance:
+  generated: '2026-06-20'
+  method: generated
+  source: openapi/amadeus-media-hotel-list-openapi.yaml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: amadeus-media
+      x-apievangelist-api: hotel-list-api
+      x-apievangelist-tags:
+        - Content
+        - Hotels
+        - Listings
+        - Travel
+  - target: $.info
+    update:
+      x-authentication-docs: https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262
+      x-status-page: https://developers.amadeus.com/status
+  - target: $.paths['/reference-data/locations/hotels/by-hotels'].get
+    update:
+      x-apievangelist-artifacts:
+        errors: errors/amadeus-media-problem-types.yml
+        mcp-tool: search_hotels_by_hotel_ids
+  - target: $.paths['/reference-data/locations/hotels/by-city'].get
+    update:
+      x-apievangelist-artifacts:
+        mcp-tool: search_hotels_by_city
+  - target: $.paths['/reference-data/locations/hotels/by-geocode'].get
+    update:
+      x-apievangelist-artifacts:
+        mcp-tool: search_hotels_by_geocode

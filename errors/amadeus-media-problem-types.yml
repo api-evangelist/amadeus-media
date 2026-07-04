@@ -1,0 +1,70 @@
+generated: '2026-06-20'
+method: derived
+format: amadeus-errors
+media_type: application/vnd.amadeus+json
+source: >-
+  Derived from 4xx/5xx responses in
+  openapi/amadeus-media-hotel-content-openapi.yaml and
+  openapi/amadeus-media-hotel-list-openapi.yaml. Amadeus does not use RFC 9457
+  application/problem+json; errors are returned as an errors[] array with
+  status/code/title/detail/source. Codes/titles below come from the Amadeus
+  Canned Messages documented in the Hotel List 400 response.
+problems:
+  - status: 400
+    title: Bad request
+    detail: Invalid parameters or query format.
+    amadeus_codes:
+      - code: 1
+        title: CHECK FORMAT
+      - code: 477
+        title: INVALID FORMAT
+      - code: 9
+        title: CHECK CITY CODE
+      - code: 1157
+        title: INVALID CITY CODE
+      - code: 3237
+        title: PROPERTY CODE NOT FOUND IN SYSTEM
+      - code: 1257
+        title: INVALID PROPERTY CODE
+      - code: 895
+        title: NOTHING FOUND FOR REQUESTED CITY
+      - code: 1271
+        title: GUEST RECORD NOT FOUND
+      - code: 11126
+        title: NO PROPERTIES FOUND FOR RP/DI REQUESTED
+    source_operations:
+      - openapi/amadeus-media-hotel-content-openapi.yaml#getHotelContent
+      - openapi/amadeus-media-hotel-content-openapi.yaml#getHotelMedia
+      - openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-by-hotels
+      - openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-by-city
+      - openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-geocodes
+  - status: 401
+    title: Unauthorized
+    detail: Access token missing or invalid.
+    remediation: >-
+      Obtain a valid OAuth2 bearer token from the Amadeus token endpoint and
+      send it in the Authorization header.
+    source_operations:
+      - openapi/amadeus-media-hotel-content-openapi.yaml#getHotelContent
+      - openapi/amadeus-media-hotel-content-openapi.yaml#getHotelMedia
+  - status: 404
+    title: Not found
+    detail: No hotels found for the given IDs / no response for this query parameter.
+    amadeus_codes:
+      - code: 1797
+        title: NOT FOUND
+    source_operations:
+      - openapi/amadeus-media-hotel-content-openapi.yaml#getHotelContent
+      - openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-by-hotels
+  - status: 500
+    title: Internal server error
+    detail: A system error has occurred.
+    amadeus_codes:
+      - code: 141
+        title: SYSTEM ERROR HAS OCCURRED
+    source_operations:
+      - openapi/amadeus-media-hotel-content-openapi.yaml#getHotelContent
+      - openapi/amadeus-media-hotel-content-openapi.yaml#getHotelMedia
+      - openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-by-hotels
+      - openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-by-city
+      - openapi/amadeus-media-hotel-list-openapi.yaml#get-shopping-hotels-geocodes
