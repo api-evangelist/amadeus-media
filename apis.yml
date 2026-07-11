@@ -110,6 +110,12 @@ apis:
       - type: Overlay
         url: overlays/amadeus-media-hotel-list-overlay.yaml
 common:
+  - type: VulnerabilityDisclosure
+    url: security/amadeus-media-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/amadeus-media-domain-security.yml
+  - type: Authentication
+    url: authentication/amadeus-media-authentication.yml
   - type: Portal
     url: https://developers.amadeus.com/
   - type: GettingStarted

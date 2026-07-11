@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/amadeus-media-hotel-content-openapi.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth2 Bearer token. Obtain a token using the Amadeus Authorization API at https://test.api.amadeus.com/v1/security/oauth2/token.
+  sources:
+  - openapi/amadeus-media-hotel-content-openapi.yaml
