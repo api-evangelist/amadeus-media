@@ -110,6 +110,8 @@ apis:
       - type: Overlay
         url: overlays/amadeus-media-hotel-list-overlay.yaml
 common:
+  - type: AgenticAccess
+    url: agentic-access/amadeus-media-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/amadeus-media-vulnerability-disclosure.yml
   - type: DomainSecurity
