@@ -1,11 +1,26 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
-  title: Hotel List
-  version: 1.0.4
-  description: Before using the API you will need to get an access token. Please read our **[Authorization Guide](https://developers.amadeus.com/self-service/apis-docs/guides/authorization)** for more
-    information on how to get your token.
+  title: Amadeus Hotel Content Hotels API
+  version: 1.0.0
+  description: 'The Amadeus Hotel Content API provides detailed property information for hotels in the Amadeus inventory, including property descriptions, amenities, facilities, contact details, and media assets such as images and multimedia content. This Enterprise API enables travel platforms to build rich hotel profiles with photos, room images, and comprehensive property descriptions.
+
+    Before using this API, obtain an access token. See the Authorization Guide for details.'
+  contact:
+    name: Amadeus for Developers
+    url: https://developers.amadeus.com/support
+  license:
+    name: Amadeus Terms and Conditions
+    url: https://developers.amadeus.com/legal/terms-and-conditions
+  x-generated-from: documentation
 servers:
+- url: https://api.amadeus.com/v1
+  description: Production server
 - url: https://test.api.amadeus.com/v1
+  description: Test server
+security:
+- BearerAuth: []
+tags:
+- name: Hotels
 paths:
   /reference-data/locations/hotels/by-hotels:
     get:
@@ -38,20 +53,7 @@ paths:
                       links:
                         self: http://test.api.amadeus.com/reference-data/locations/hotels/by-hotels?hotelIds=ACPAR419
         '400':
-          description: |-
-            Bad Request
-
-             Code | Title  
-            -----|-----
-            00001 | CHECK FORMAT
-            00477 | INVALID FORMAT
-            00009 | CHECK CITY CODE
-            01157 | INVALID CITY CODE
-            03237 | PROPERTY CODE NOT FOUND IN SYSTEM
-            01257 | INVALID PROPERTY CODE
-            00895 | NOTHING FOUND FOR REQUESTED CITY
-            01271 | GUEST RECORD NOT FOUND
-            11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED
+          description: "Bad Request\n\n Code | Title  \n-----|-----\n00001 | CHECK FORMAT\n00477 | INVALID FORMAT\n00009 | CHECK CITY CODE\n01157 | INVALID CITY CODE\n03237 | PROPERTY CODE NOT FOUND IN SYSTEM\n01257 | INVALID PROPERTY CODE\n00895 | NOTHING FOUND FOR REQUESTED CITY\n01271 | GUEST RECORD NOT FOUND\n11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED"
           content:
             application/vnd.amadeus+json:
               schema:
@@ -143,20 +145,7 @@ paths:
                       links:
                         self: http://test.api.amadeus.com/reference-data/locations/hotels/by-city?cityCode=NCE&radius=1
         '400':
-          description: |-
-            Bad Request
-
-             Code | Title  
-            -----|-----
-            00001 | CHECK FORMAT
-            00477 | INVALID FORMAT
-            00009 | CHECK CITY CODE
-            01157 | INVALID CITY CODE
-            03237 | PROPERTY CODE NOT FOUND IN SYSTEM
-            01257 | INVALID PROPERTY CODE
-            00895 | NOTHING FOUND FOR REQUESTED CITY
-            01271 | GUEST RECORD NOT FOUND
-            11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED
+          description: "Bad Request\n\n Code | Title  \n-----|-----\n00001 | CHECK FORMAT\n00477 | INVALID FORMAT\n00009 | CHECK CITY CODE\n01157 | INVALID CITY CODE\n03237 | PROPERTY CODE NOT FOUND IN SYSTEM\n01257 | INVALID PROPERTY CODE\n00895 | NOTHING FOUND FOR REQUESTED CITY\n01271 | GUEST RECORD NOT FOUND\n11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED"
           content:
             application/vnd.amadeus+json:
               schema:
@@ -188,8 +177,7 @@ paths:
           maxLength: 3
         in: query
         name: cityCode
-        description: Destination city code or airport code. In case of city  code , the search will be done around the city center. Available codes can be found in [IATA table 
-          codes](http://www.iata.org/publications/Pages/code-search.aspx) (3 chars IATA Code).
+        description: Destination city code or airport code. In case of city  code , the search will be done around the city center. Available codes can be found in [IATA table codes](http://www.iata.org/publications/Pages/code-search.aspx) (3 chars IATA Code).
         required: true
         example: PAR
       - schema:
@@ -297,6 +285,7 @@ paths:
         name: hotelSource
         description: Hotel source with values BEDBANK for aggregators, DIRECTCHAIN for GDS/Distribution and ALL for both.
   /reference-data/locations/hotels/by-geocode:
+    parameters: []
     get:
       summary: Amadeus Search Hotels Using Geocode
       tags:
@@ -378,20 +367,7 @@ paths:
                       links:
                         self: http://test.api.amadeus.com/reference-data/locations/hotels/by-geocode?latitude=43.61999752&longitude=7.0499998&radius=1
         '400':
-          description: |-
-            Bad Request
-
-             Code | Title  
-            -----|-----
-            00001 | CHECK FORMAT
-            00477 | INVALID FORMAT
-            00009 | CHECK CITY CODE
-            01157 | INVALID CITY CODE
-            03237 | PROPERTY CODE NOT FOUND IN SYSTEM
-            01257 | INVALID PROPERTY CODE
-            00895 | NOTHING FOUND FOR REQUESTED CITY
-            01271 | GUEST RECORD NOT FOUND
-            11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED
+          description: "Bad Request\n\n Code | Title  \n-----|-----\n00001 | CHECK FORMAT\n00477 | INVALID FORMAT\n00009 | CHECK CITY CODE\n01157 | INVALID CITY CODE\n03237 | PROPERTY CODE NOT FOUND IN SYSTEM\n01257 | INVALID PROPERTY CODE\n00895 | NOTHING FOUND FOR REQUESTED CITY\n01271 | GUEST RECORD NOT FOUND\n11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED"
           content:
             application/vnd.amadeus+json:
               schema:
@@ -539,113 +515,8 @@ paths:
         in: query
         name: hotelSource
         description: Hotel source with values BEDBANK for aggregators, DIRECTCHAIN for GDS/Distribution and ALL for both.
-    parameters: []
 components:
   schemas:
-    HotelSearchResponse:
-      title: Hotel Search Response
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Hotel'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    Error_400:
-      type: object
-      description: A set of errors
-      title: Error 400
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            description: The Error Definition
-            title: Error
-            properties:
-              status:
-                type: integer
-                description: The [HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) of this response. This is present only in terminal errors which cause an
-                  unsuccessful response. In the case of multiple errors, they must all have the same status.
-              code:
-                type: integer
-                description: A machine-readable error code from the Amadeus Canned Messages table, that will enable the API Consumers code to handle this type of error
-              title:
-                type: string
-                description: An error title from the Canned Messages table with a 1:1 correspondence to the error code. This may be localized
-              detail:
-                type: string
-                description: An easy-to-read explanation specific to this occurrence of the problem. It should give the API consumer an idea of what went wrong and how to recover from it. Like the 
-                  title, this field’s value can be localized.
-              source:
-                type: object
-                title: Error_Source
-                properties:
-                  parameter:
-                    type: string
-                    description: The key of the URI path or query parameter that caused the error
-                  pointer:
-                    type: string
-                    description: A JSON Pointer [RFC6901] to the associated entity in the request body that caused this error
-                  example:
-                    type: string
-                    description: A sample input to guide the user when resolving this issue
-              documentation:
-                type: string
-                format: url
-                description: A link to a web page or file with further documentation to help the API consumer resolve this error
-    Error_404:
-      type: object
-      description: A set of errors
-      title: Error 404
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            description: The Error Definition
-            title: Error
-            properties:
-              status:
-                type: integer
-                description: The [HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) of this response. This is present only in terminal errors which cause an
-                  unsuccessful response. In the case of multiple errors, they must all have the same status.
-              code:
-                type: integer
-                description: A machine-readable error code from the Amadeus Canned Messages table, that will enable the API Consumers code to handle this type of error
-              title:
-                type: string
-                description: An error title from the Canned Messages table with a 1:1 correspondence to the error code. This may be localized
-              detail:
-                type: string
-                description: An easy-to-read explanation specific to this occurrence of the problem. It should give the API consumer an idea of what went wrong and how to recover from it. Like the 
-                  title, this field’s value can be localized.
-              source:
-                type: object
-                title: Error_Source
-                properties:
-                  parameter:
-                    type: string
-                    description: The key of the URI path or query parameter that caused the error
-                  pointer:
-                    type: string
-                    description: A JSON Pointer [RFC6901] to the associated entity in the request body that caused this error
-                  example:
-                    type: string
-                    description: A sample input to guide the user when resolving this issue
-              documentation:
-                type: string
-                format: url
-                description: A link to a web page or file with further documentation to help the API consumer resolve this error
-      example:
-        errors:
-        - status: 404
-          code: 1797
-          title: NOT FOUND
-          detail: no response found for this query parameter
-          source:
-            parameter: hotelIds
     Error_500:
       type: object
       description: A set of errors
@@ -660,8 +531,7 @@ components:
             properties:
               status:
                 type: integer
-                description: The [HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) of this response. This is present only in terminal errors which cause an
-                  unsuccessful response. In the case of multiple errors, they must all have the same status.
+                description: The [HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) of this response. This is present only in terminal errors which cause an unsuccessful response. In the case of multiple errors, they must all have the same status.
               code:
                 type: integer
                 description: A machine-readable error code from the Amadeus Canned Messages table, that will enable the API Consumers code to handle this type of error
@@ -670,8 +540,7 @@ components:
                 description: An error title from the Canned Messages table with a 1:1 correspondence to the error code. This may be localized
               detail:
                 type: string
-                description: An easy-to-read explanation specific to this occurrence of the problem. It should give the API consumer an idea of what went wrong and how to recover from it. Like the 
-                  title, this field’s value can be localized.
+                description: An easy-to-read explanation specific to this occurrence of the problem. It should give the API consumer an idea of what went wrong and how to recover from it. Like the title, this field’s value can be localized.
               source:
                 type: object
                 title: Error_Source
@@ -694,6 +563,88 @@ components:
         - status: 500
           code: 141
           title: SYSTEM ERROR HAS OCCURRED
+    Error_400:
+      type: object
+      description: A set of errors
+      title: Error 400
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            description: The Error Definition
+            title: Error
+            properties:
+              status:
+                type: integer
+                description: The [HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) of this response. This is present only in terminal errors which cause an unsuccessful response. In the case of multiple errors, they must all have the same status.
+              code:
+                type: integer
+                description: A machine-readable error code from the Amadeus Canned Messages table, that will enable the API Consumers code to handle this type of error
+              title:
+                type: string
+                description: An error title from the Canned Messages table with a 1:1 correspondence to the error code. This may be localized
+              detail:
+                type: string
+                description: An easy-to-read explanation specific to this occurrence of the problem. It should give the API consumer an idea of what went wrong and how to recover from it. Like the title, this field’s value can be localized.
+              source:
+                type: object
+                title: Error_Source
+                properties:
+                  parameter:
+                    type: string
+                    description: The key of the URI path or query parameter that caused the error
+                  pointer:
+                    type: string
+                    description: A JSON Pointer [RFC6901] to the associated entity in the request body that caused this error
+                  example:
+                    type: string
+                    description: A sample input to guide the user when resolving this issue
+              documentation:
+                type: string
+                format: url
+                description: A link to a web page or file with further documentation to help the API consumer resolve this error
+    Meta:
+      type: object
+      description: Meta information about the returned object(s) in "data"
+      title: Meta
+      properties:
+        count:
+          type: integer
+          format: int64
+          description: Total number of object(s) retrieved
+          minimum: 0
+          exclusiveMinimum: false
+        sort:
+          type: array
+          description: Sorting fields criteria and their associated priority and direction. Sorting priority is indicated by the order of the strings within the array. E.g. sort=title,size means that items are ordered by title and then, as a second ordering by size. A '-' sign before the search criteria indicates a descending ordering direction (Z to A), whereas no sign indicates a ascending direction (A to Z). E.g. sort=-title mean that the objects are ordered by title in reverse order (Z to A).
+          items:
+            type: string
+        links:
+          type: object
+          title: Links
+          description: Links related to the returned object(s)
+          properties:
+            self:
+              type: string
+              format: url
+              description: Link to the same page.
+            first:
+              type: string
+              format: url
+              description: Link to the first page.
+            prev:
+              type: string
+              format: url
+              description: Link to the previous page.
+            next:
+              type: string
+              format: url
+              description: Link to the next page.
+            last:
+              type: string
+              format: url
+              description: Link to the last page.
     Hotel:
       title: Hotel
       description: Hotel location information
@@ -736,8 +687,7 @@ components:
                 latitude:
                   type: number
                   format: float
-                  description: Latitude of the position expressed in decimal degrees (WSG 84), e.g. 6.244203. A positive value denotes northern hemisphere or the equator, and a negative value denotes 
-                    southern hemisphere. The number of digits to represent the precision of the coordinate.
+                  description: Latitude of the position expressed in decimal degrees (WSG 84), e.g. 6.244203. A positive value denotes northern hemisphere or the equator, and a negative value denotes southern hemisphere. The number of digits to represent the precision of the coordinate.
                   minimum: -90
                   exclusiveMinimum: false
                   maximum: 90
@@ -746,8 +696,7 @@ components:
                 longitude:
                   type: number
                   format: float
-                  description: Longitude of the position expressed in decimal degrees (WSG 84), e.g. -75.581211. A positive value denotes east longitude or the prime meridian, and a negative value 
-                    denotes west longitude.  The number of digits to represent the precision of the coordinate.
+                  description: Longitude of the position expressed in decimal degrees (WSG 84), e.g. -75.581211. A positive value denotes east longitude or the prime meridian, and a negative value denotes west longitude.  The number of digits to represent the precision of the coordinate.
                   minimum: -180
                   exclusiveMinimum: false
                   maximum: 180
@@ -762,14 +711,16 @@ components:
               type: string
               pattern: ^[A-Z0-9]{8}$
               example: ADPAR001
-              description: |
-                Amadeus Property Code (8 chars)
+              description: 'Amadeus Property Code (8 chars)
+
+                '
             chainCode:
               type: string
               pattern: ^[A-Z]{2}$
               example: AD
-              description: |
-                Brand (RT...) or Merchant (AD...) (Amadeus 2 chars Code)
+              description: 'Brand (RT...) or Merchant (AD...) (Amadeus 2 chars Code)
+
+                '
             name:
               type: string
               example: Hotel de Paris
@@ -810,46 +761,67 @@ components:
             type: string
             description: Last time the content was updated by a provider.
             format: date-time
-    Meta:
+    Error_404:
       type: object
-      description: Meta information about the returned object(s) in "data"
-      title: Meta
+      description: A set of errors
+      title: Error 404
       properties:
-        count:
-          type: integer
-          format: int64
-          description: Total number of object(s) retrieved
-          minimum: 0
-          exclusiveMinimum: false
-        sort:
+        errors:
           type: array
-          description: Sorting fields criteria and their associated priority and direction. Sorting priority is indicated by the order of the strings within the array. E.g. sort=title,size means that 
-            items are ordered by title and then, as a second ordering by size. A '-' sign before the search criteria indicates a descending ordering direction (Z to A), whereas no sign indicates a 
-            ascending direction (A to Z). E.g. sort=-title mean that the objects are ordered by title in reverse order (Z to A).
           items:
-            type: string
-        links:
-          type: object
-          title: Links
-          description: Links related to the returned object(s)
-          properties:
-            self:
-              type: string
-              format: url
-              description: Link to the same page.
-            first:
-              type: string
-              format: url
-              description: Link to the first page.
-            prev:
-              type: string
-              format: url
-              description: Link to the previous page.
-            next:
-              type: string
-              format: url
-              description: Link to the next page.
-            last:
-              type: string
-              format: url
-              description: Link to the last page.
+            type: object
+            description: The Error Definition
+            title: Error
+            properties:
+              status:
+                type: integer
+                description: The [HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) of this response. This is present only in terminal errors which cause an unsuccessful response. In the case of multiple errors, they must all have the same status.
+              code:
+                type: integer
+                description: A machine-readable error code from the Amadeus Canned Messages table, that will enable the API Consumers code to handle this type of error
+              title:
+                type: string
+                description: An error title from the Canned Messages table with a 1:1 correspondence to the error code. This may be localized
+              detail:
+                type: string
+                description: An easy-to-read explanation specific to this occurrence of the problem. It should give the API consumer an idea of what went wrong and how to recover from it. Like the title, this field’s value can be localized.
+              source:
+                type: object
+                title: Error_Source
+                properties:
+                  parameter:
+                    type: string
+                    description: The key of the URI path or query parameter that caused the error
+                  pointer:
+                    type: string
+                    description: A JSON Pointer [RFC6901] to the associated entity in the request body that caused this error
+                  example:
+                    type: string
+                    description: A sample input to guide the user when resolving this issue
+              documentation:
+                type: string
+                format: url
+                description: A link to a web page or file with further documentation to help the API consumer resolve this error
+      example:
+        errors:
+        - status: 404
+          code: 1797
+          title: NOT FOUND
+          detail: no response found for this query parameter
+          source:
+            parameter: hotelIds
+    HotelSearchResponse:
+      title: Hotel Search Response
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hotel'
+        meta:
+          $ref: '#/components/schemas/Meta'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 Bearer token. Obtain a token using the Amadeus Authorization API at https://test.api.amadeus.com/v1/security/oauth2/token.
