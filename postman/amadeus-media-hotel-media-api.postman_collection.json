@@ -1,0 +1,379 @@
+{
+  "info": {
+    "_postman_id": "2f4a78b3-a2ce-4363-9919-1f94dfd8bab3",
+    "name": "Amadeus Hotel Content Hotel Media API",
+    "description": "The Amadeus Hotel Content API provides detailed property information for hotels in the Amadeus inventory, including property descriptions, amenities, facilities, contact details, and media assets such as images and multimedia content. This Enterprise API enables travel platforms to build rich hotel profiles with photos, room images, and comprehensive property descriptions.\nBefore using this API, obtain an access token. See the Authorization Guide for details.\n\nContact Support:\n Name: Amadeus for Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:30:17.000Z",
+    "updatedAt": "2026-07-28T00:30:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2f4a78b3-a2ce-4363-9919-1f94dfd8bab3"
+  },
+  "item": [
+    {
+      "name": "reference-data",
+      "item": [
+        {
+          "name": "locations",
+          "item": [
+            {
+              "name": "hotels",
+              "item": [
+                {
+                  "name": "by-hotels",
+                  "item": [
+                    {
+                      "name": "media",
+                      "item": [
+                        {
+                          "name": "Amadeus Get Hotel Media",
+                          "id": "f3b357d3-c196-4d9e-9fc8-1fd734f5c99b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.amadeus+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/media?hotelIds=<string>&category=COMMON_AREA&format=JPEG",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reference-data",
+                                "locations",
+                                "hotels",
+                                "by-hotels",
+                                "media"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Amadeus property codes (8 characters). Up to 20 hotel IDs per request.",
+                                  "key": "hotelIds",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter media by category. Options: EXTERIOR, LOBBY, ROOM, RESTAURANT, POOL, SPA, GYM, MEETING_ROOM, COMMON_AREA.",
+                                  "key": "category",
+                                  "value": "COMMON_AREA"
+                                },
+                                {
+                                  "description": "Preferred image format. Options: JPEG, PNG, WEBP.",
+                                  "key": "format",
+                                  "value": "JPEG"
+                                }
+                              ]
+                            },
+                            "description": "Returns media assets (images, videos) for one or more hotels in the Amadeus inventory. Media includes exterior shots, lobby photos, room images, restaurant photos, and amenity images categorized by type."
+                          },
+                          "response": [
+                            {
+                              "id": "236cfc35-608a-43a6-87ff-e3bcb1e3961b",
+                              "name": "Successful response with hotel media assets.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/media?hotelIds=<string>&category=COMMON_AREA&format=JPEG",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "media"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters). Up to 20 hotel IDs per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter media by category. Options: EXTERIOR, LOBBY, ROOM, RESTAURANT, POOL, SPA, GYM, MEETING_ROOM, COMMON_AREA.",
+                                      "key": "category",
+                                      "value": "COMMON_AREA"
+                                    },
+                                    {
+                                      "description": "Preferred image format. Options: JPEG, PNG, WEBP.",
+                                      "key": "format",
+                                      "value": "JPEG"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": [\n    {\n      \"hotelId\": \"<string>\",\n      \"media\": [\n        {\n          \"id\": \"<string>\",\n          \"category\": \"<string>\",\n          \"uri\": \"<uri>\",\n          \"thumbnailUri\": \"<uri>\",\n          \"caption\": \"<string>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"format\": \"WEBP\",\n          \"isPrimary\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"category\": \"<string>\",\n          \"uri\": \"<uri>\",\n          \"thumbnailUri\": \"<uri>\",\n          \"caption\": \"<string>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"format\": \"WEBP\",\n          \"isPrimary\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"hotelId\": \"<string>\",\n      \"media\": [\n        {\n          \"id\": \"<string>\",\n          \"category\": \"<string>\",\n          \"uri\": \"<uri>\",\n          \"thumbnailUri\": \"<uri>\",\n          \"caption\": \"<string>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"format\": \"WEBP\",\n          \"isPrimary\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"category\": \"<string>\",\n          \"uri\": \"<uri>\",\n          \"thumbnailUri\": \"<uri>\",\n          \"caption\": \"<string>\",\n          \"width\": \"<integer>\",\n          \"height\": \"<integer>\",\n          \"format\": \"PNG\",\n          \"isPrimary\": \"<boolean>\"\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"links\": {\n      \"self\": \"<uri>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T00:30:18.000Z",
+                              "updatedAt": "2026-07-28T00:30:18.000Z",
+                              "uid": "35240-236cfc35-608a-43a6-87ff-e3bcb1e3961b"
+                            },
+                            {
+                              "id": "b5aada50-a5e0-4cb7-8131-47c9924c77c6",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/media?hotelIds=<string>&category=COMMON_AREA&format=JPEG",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "media"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters). Up to 20 hotel IDs per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter media by category. Options: EXTERIOR, LOBBY, ROOM, RESTAURANT, POOL, SPA, GYM, MEETING_ROOM, COMMON_AREA.",
+                                      "key": "category",
+                                      "value": "COMMON_AREA"
+                                    },
+                                    {
+                                      "description": "Preferred image format. Options: JPEG, PNG, WEBP.",
+                                      "key": "format",
+                                      "value": "JPEG"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T00:30:18.000Z",
+                              "updatedAt": "2026-07-28T00:30:18.000Z",
+                              "uid": "35240-b5aada50-a5e0-4cb7-8131-47c9924c77c6"
+                            },
+                            {
+                              "id": "743c07cf-478b-4183-b497-f5864a17975b",
+                              "name": "Unauthorized.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/media?hotelIds=<string>&category=COMMON_AREA&format=JPEG",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "media"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters). Up to 20 hotel IDs per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter media by category. Options: EXTERIOR, LOBBY, ROOM, RESTAURANT, POOL, SPA, GYM, MEETING_ROOM, COMMON_AREA.",
+                                      "key": "category",
+                                      "value": "COMMON_AREA"
+                                    },
+                                    {
+                                      "description": "Preferred image format. Options: JPEG, PNG, WEBP.",
+                                      "key": "format",
+                                      "value": "JPEG"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T00:30:18.000Z",
+                              "updatedAt": "2026-07-28T00:30:18.000Z",
+                              "uid": "35240-743c07cf-478b-4183-b497-f5864a17975b"
+                            },
+                            {
+                              "id": "c77eafad-a450-4785-b954-e27bf15c1544",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/media?hotelIds=<string>&category=COMMON_AREA&format=JPEG",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "media"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters). Up to 20 hotel IDs per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter media by category. Options: EXTERIOR, LOBBY, ROOM, RESTAURANT, POOL, SPA, GYM, MEETING_ROOM, COMMON_AREA.",
+                                      "key": "category",
+                                      "value": "COMMON_AREA"
+                                    },
+                                    {
+                                      "description": "Preferred image format. Options: JPEG, PNG, WEBP.",
+                                      "key": "format",
+                                      "value": "JPEG"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T00:30:18.000Z",
+                              "updatedAt": "2026-07-28T00:30:18.000Z",
+                              "uid": "35240-c77eafad-a450-4785-b954-e27bf15c1544"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:30:18.000Z",
+                          "updatedAt": "2026-07-28T00:30:18.000Z",
+                          "uid": "35240-f3b357d3-c196-4d9e-9fc8-1fd734f5c99b"
+                        }
+                      ],
+                      "id": "88539740-c15b-4b88-b3ef-11e22ac2804d",
+                      "createdAt": "2026-07-28T00:30:18.000Z",
+                      "updatedAt": "2026-07-28T00:30:18.000Z",
+                      "uid": "35240-88539740-c15b-4b88-b3ef-11e22ac2804d"
+                    }
+                  ],
+                  "id": "e5715f7b-44fb-4bb0-97a3-316a6d7451bd",
+                  "createdAt": "2026-07-28T00:30:18.000Z",
+                  "updatedAt": "2026-07-28T00:30:18.000Z",
+                  "uid": "35240-e5715f7b-44fb-4bb0-97a3-316a6d7451bd"
+                }
+              ],
+              "id": "b226fe9c-1f3d-47c7-aac6-8e188168a5a7",
+              "createdAt": "2026-07-28T00:30:18.000Z",
+              "updatedAt": "2026-07-28T00:30:18.000Z",
+              "uid": "35240-b226fe9c-1f3d-47c7-aac6-8e188168a5a7"
+            }
+          ],
+          "id": "dbd988d3-61b2-4113-a51a-cde577cd254d",
+          "createdAt": "2026-07-28T00:30:18.000Z",
+          "updatedAt": "2026-07-28T00:30:18.000Z",
+          "uid": "35240-dbd988d3-61b2-4113-a51a-cde577cd254d"
+        }
+      ],
+      "id": "4e63b791-b2b4-4b39-bc37-e69388084327",
+      "createdAt": "2026-07-28T00:30:18.000Z",
+      "updatedAt": "2026-07-28T00:30:18.000Z",
+      "uid": "35240-4e63b791-b2b4-4b39-bc37-e69388084327"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.amadeus.com/v1"
+    }
+  ]
+}

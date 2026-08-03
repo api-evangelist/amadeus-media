@@ -1,0 +1,442 @@
+{
+  "info": {
+    "_postman_id": "f46b925d-877d-4257-a15e-10b5b5da6f78",
+    "name": "Amadeus Hotel Content API",
+    "description": "The Amadeus Hotel Content API provides detailed property information for hotels in the Amadeus inventory, including property descriptions, amenities, facilities, contact details, and media assets such as images and multimedia content. This Enterprise API enables travel platforms to build rich hotel profiles with photos, room images, and comprehensive property descriptions.\nBefore using this API, obtain an access token. See the Authorization Guide for details.\n\nContact Support:\n Name: Amadeus for Developers",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:30:10.000Z",
+    "updatedAt": "2026-07-28T00:30:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f46b925d-877d-4257-a15e-10b5b5da6f78"
+  },
+  "item": [
+    {
+      "name": "reference-data",
+      "item": [
+        {
+          "name": "locations",
+          "item": [
+            {
+              "name": "hotels",
+              "item": [
+                {
+                  "name": "by-hotels",
+                  "item": [
+                    {
+                      "name": "content",
+                      "item": [
+                        {
+                          "name": "Amadeus Get Hotel Content",
+                          "id": "577b7d2a-c49a-4e0e-8cae-84c1ced7b81f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.amadeus+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/content?hotelIds=<string>&language=<string>&fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reference-data",
+                                "locations",
+                                "hotels",
+                                "by-hotels",
+                                "content"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Amadeus property codes (8 characters) for which to retrieve content. Up to 20 hotel IDs can be specified per request.",
+                                  "key": "hotelIds",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Language code for the content response (e.g., EN, FR, DE). Defaults to English if not specified.",
+                                  "key": "language",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Comma-separated list of content fields to include in the response. Options include: basicInfo, descriptions, amenities, media, contact, location.",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "description": "Returns detailed content for one or more hotels including property descriptions, amenities, facilities, contact information, geolocation, and media assets such as images and videos. Provide one or more hotel IDs (Amadeus property codes) to retrieve their content."
+                          },
+                          "response": [
+                            {
+                              "id": "9f4c562a-89fa-430d-8c8d-eac654f46014",
+                              "name": "Successful response with hotel content data.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/content?hotelIds=<string>&language=<string>&fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters) for which to retrieve content. Up to 20 hotel IDs can be specified per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Language code for the content response (e.g., EN, FR, DE). Defaults to English if not specified.",
+                                      "key": "language",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of content fields to include in the response. Options include: basicInfo, descriptions, amenities, media, contact, location.",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": [\n    {\n      \"hotelId\": \"<string>\",\n      \"chainCode\": \"<string>\",\n      \"iataCode\": \"<string>\",\n      \"name\": \"<string>\",\n      \"basicInfo\": {\n        \"category\": \"<integer>\",\n        \"rating\": \"<string>\",\n        \"numberOfRooms\": \"<integer>\",\n        \"checkInTime\": \"<string>\",\n        \"checkOutTime\": \"<string>\"\n      },\n      \"descriptions\": [\n        {\n          \"lang\": \"<string>\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"lang\": \"<string>\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"contact\": {\n        \"phone\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"email\": \"<email>\",\n        \"website\": \"<uri>\"\n      },\n      \"address\": {\n        \"lines\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"postalCode\": \"<string>\",\n        \"cityName\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"stateCode\": \"<string>\"\n      },\n      \"geoCode\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"amenities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"media\": [\n        {\n          \"category\": \"EXTERIOR\",\n          \"uri\": \"<uri>\",\n          \"caption\": \"<string>\"\n        },\n        {\n          \"category\": \"SPA\",\n          \"uri\": \"<uri>\",\n          \"caption\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"hotelId\": \"<string>\",\n      \"chainCode\": \"<string>\",\n      \"iataCode\": \"<string>\",\n      \"name\": \"<string>\",\n      \"basicInfo\": {\n        \"category\": \"<integer>\",\n        \"rating\": \"<string>\",\n        \"numberOfRooms\": \"<integer>\",\n        \"checkInTime\": \"<string>\",\n        \"checkOutTime\": \"<string>\"\n      },\n      \"descriptions\": [\n        {\n          \"lang\": \"<string>\",\n          \"text\": \"<string>\"\n        },\n        {\n          \"lang\": \"<string>\",\n          \"text\": \"<string>\"\n        }\n      ],\n      \"contact\": {\n        \"phone\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"email\": \"<email>\",\n        \"website\": \"<uri>\"\n      },\n      \"address\": {\n        \"lines\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"postalCode\": \"<string>\",\n        \"cityName\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"stateCode\": \"<string>\"\n      },\n      \"geoCode\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"amenities\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"media\": [\n        {\n          \"category\": \"EXTERIOR\",\n          \"uri\": \"<uri>\",\n          \"caption\": \"<string>\"\n        },\n        {\n          \"category\": \"RESTAURANT\",\n          \"uri\": \"<uri>\",\n          \"caption\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"links\": {\n      \"self\": \"<uri>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T00:30:11.000Z",
+                              "updatedAt": "2026-07-28T00:30:11.000Z",
+                              "uid": "35240-9f4c562a-89fa-430d-8c8d-eac654f46014"
+                            },
+                            {
+                              "id": "cd065c9b-ca05-45e0-8664-8648491cec8c",
+                              "name": "Bad request. Invalid parameters.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/content?hotelIds=<string>&language=<string>&fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters) for which to retrieve content. Up to 20 hotel IDs can be specified per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Language code for the content response (e.g., EN, FR, DE). Defaults to English if not specified.",
+                                      "key": "language",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of content fields to include in the response. Options include: basicInfo, descriptions, amenities, media, contact, location.",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T00:30:11.000Z",
+                              "updatedAt": "2026-07-28T00:30:11.000Z",
+                              "uid": "35240-cd065c9b-ca05-45e0-8664-8648491cec8c"
+                            },
+                            {
+                              "id": "727a4408-d7ce-466f-8481-ed0d3a78448e",
+                              "name": "Unauthorized. Access token missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/content?hotelIds=<string>&language=<string>&fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters) for which to retrieve content. Up to 20 hotel IDs can be specified per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Language code for the content response (e.g., EN, FR, DE). Defaults to English if not specified.",
+                                      "key": "language",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of content fields to include in the response. Options include: basicInfo, descriptions, amenities, media, contact, location.",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T00:30:11.000Z",
+                              "updatedAt": "2026-07-28T00:30:11.000Z",
+                              "uid": "35240-727a4408-d7ce-466f-8481-ed0d3a78448e"
+                            },
+                            {
+                              "id": "440c6326-e407-4afe-970b-b04a0242d95d",
+                              "name": "Not found. No hotels found for the given IDs.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/content?hotelIds=<string>&language=<string>&fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters) for which to retrieve content. Up to 20 hotel IDs can be specified per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Language code for the content response (e.g., EN, FR, DE). Defaults to English if not specified.",
+                                      "key": "language",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of content fields to include in the response. Options include: basicInfo, descriptions, amenities, media, contact, location.",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T00:30:11.000Z",
+                              "updatedAt": "2026-07-28T00:30:11.000Z",
+                              "uid": "35240-440c6326-e407-4afe-970b-b04a0242d95d"
+                            },
+                            {
+                              "id": "42da4798-553a-4ad4-8ed8-0a176aa99665",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.amadeus+json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/reference-data/locations/hotels/by-hotels/content?hotelIds=<string>&language=<string>&fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "reference-data",
+                                    "locations",
+                                    "hotels",
+                                    "by-hotels",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Amadeus property codes (8 characters) for which to retrieve content. Up to 20 hotel IDs can be specified per request.",
+                                      "key": "hotelIds",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Language code for the content response (e.g., EN, FR, DE). Defaults to English if not specified.",
+                                      "key": "language",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Comma-separated list of content fields to include in the response. Options include: basicInfo, descriptions, amenities, media, contact, location.",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.amadeus+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"<integer>\",\n      \"code\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T00:30:11.000Z",
+                              "updatedAt": "2026-07-28T00:30:11.000Z",
+                              "uid": "35240-42da4798-553a-4ad4-8ed8-0a176aa99665"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T00:30:11.000Z",
+                          "updatedAt": "2026-07-28T00:30:11.000Z",
+                          "uid": "35240-577b7d2a-c49a-4e0e-8cae-84c1ced7b81f"
+                        }
+                      ],
+                      "id": "08b8c5eb-9943-4669-9ca1-e4848c4c6575",
+                      "createdAt": "2026-07-28T00:30:10.000Z",
+                      "updatedAt": "2026-07-28T00:30:10.000Z",
+                      "uid": "35240-08b8c5eb-9943-4669-9ca1-e4848c4c6575"
+                    }
+                  ],
+                  "id": "aec99efd-7314-48e3-8133-119767217aa8",
+                  "createdAt": "2026-07-28T00:30:10.000Z",
+                  "updatedAt": "2026-07-28T00:30:10.000Z",
+                  "uid": "35240-aec99efd-7314-48e3-8133-119767217aa8"
+                }
+              ],
+              "id": "1947bd66-d67c-4a00-9e57-f7e54bead01c",
+              "createdAt": "2026-07-28T00:30:10.000Z",
+              "updatedAt": "2026-07-28T00:30:10.000Z",
+              "uid": "35240-1947bd66-d67c-4a00-9e57-f7e54bead01c"
+            }
+          ],
+          "id": "37286409-0889-4465-b2fe-2b6938147f01",
+          "createdAt": "2026-07-28T00:30:10.000Z",
+          "updatedAt": "2026-07-28T00:30:10.000Z",
+          "uid": "35240-37286409-0889-4465-b2fe-2b6938147f01"
+        }
+      ],
+      "id": "9cf04b3f-bea4-499c-a8d3-72b61efe63d8",
+      "createdAt": "2026-07-28T00:30:10.000Z",
+      "updatedAt": "2026-07-28T00:30:10.000Z",
+      "uid": "35240-9cf04b3f-bea4-499c-a8d3-72b61efe63d8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.amadeus.com/v1"
+    }
+  ]
+}

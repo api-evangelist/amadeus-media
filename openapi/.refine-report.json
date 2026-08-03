@@ -1,0 +1,18 @@
+{
+  "provider": "amadeus-media",
+  "sources": [
+    "amadeus-media-hotel-content-api-openapi.yml",
+    "amadeus-media-hotel-media-api-openapi.yml",
+    "amadeus-media-hotels-api-openapi.yml"
+  ],
+  "outputs": [
+    "amadeus-media-hotel-content-api-openapi.yml",
+    "amadeus-media-hotel-media-api-openapi.yml",
+    "amadeus-media-hotels-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
