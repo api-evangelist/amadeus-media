@@ -205,6 +205,8 @@ apis:
   - type: JSONLD
     url: json-ld/amadeus-hotel-list-context.jsonld
 common:
+  - type: Overlay
+    url: overlays/amadeus-media-hotel-content-overlay.yaml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/amadeus-media/overview
   - type: AgenticAccess
