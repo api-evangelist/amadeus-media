@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amadeus Hotel Content API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hotel Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amadeus Get Hotel Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.amadeus.com/v1/reference-data/locations/hotels/by-hotels/content",
+            "params": [
+              {
+                "name": "hotelIds",
+                "value": "",
+                "type": "query",
+                "description": "Amadeus property codes (8 characters) for which to retrieve content. Up to 20 hotel IDs can be specified per request."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Language code for the content response (e.g., EN, FR, DE). Defaults to English if not specified."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of content fields to include in the response. Options include: basicInfo, descriptions, amenities, media, contact, location."
+              }
+            ]
+          },
+          "docs": "Returns detailed content for one or more hotels including property descriptions, amenities, facilities, contact information, geolocation, and media assets such as images and videos. Provide one or more hotel IDs (Amadeus property codes) to retrieve their content."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amadeus Hotel Content Hotel Media API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hotel Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amadeus Get Hotel Media",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.amadeus.com/v1/reference-data/locations/hotels/by-hotels/media",
+            "params": [
+              {
+                "name": "hotelIds",
+                "value": "",
+                "type": "query",
+                "description": "Amadeus property codes (8 characters). Up to 20 hotel IDs per request."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter media by category. Options: EXTERIOR, LOBBY, ROOM, RESTAURANT, POOL, SPA, GYM, MEETING_ROOM, COMMON_AREA."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Preferred image format. Options: JPEG, PNG, WEBP."
+              }
+            ]
+          },
+          "docs": "Returns media assets (images, videos) for one or more hotels in the Amadeus inventory. Media includes exterior shots, lobby photos, room images, restaurant photos, and amenity images categorized by type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,339 @@
+{
+  "item": [
+    {
+      "id": "34537555-2776-4177-acc2-1d34e27af16d",
+      "name": "Hotel Media",
+      "description": {
+        "content": "Operations for retrieving hotel media assets including images and videos.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49ebbd35-7b70-4b9f-86cb-d655ec2cf05b",
+          "name": "Amadeus Get Hotel Media",
+          "request": {
+            "name": "Amadeus Get Hotel Media",
+            "description": {
+              "content": "Returns media assets (images, videos) for one or more hotels in the Amadeus inventory. Media includes exterior shots, lobby photos, room images, restaurant photos, and amenity images categorized by type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "locations",
+                "hotels",
+                "by-hotels",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hotelIds",
+                  "value": "<string>",
+                  "description": "(Required) Amadeus property codes (8 characters). Up to 20 hotel IDs per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter media by category. Options: EXTERIOR, LOBBY, ROOM, RESTAURANT, POOL, SPA, GYM, MEETING_ROOM, COMMON_AREA."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Preferred image format. Options: JPEG, PNG, WEBP."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.amadeus+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a869161-f13b-43f8-bd4b-81b555e13b3d",
+              "name": "Successful response with hotel media assets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "category",
+                      "value": "EXTERIOR"
+                    },
+                    {
+                      "key": "format",
+                      "value": "JPEG"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"hotelId\": \"MCLONGHM\",\n      \"media\": [\n        {\n          \"id\": \"media-001\",\n          \"category\": \"EXTERIOR\",\n          \"uri\": \"https://media.amadeus.com/hotels/MCLONGHM/exterior-01.jpg\",\n          \"thumbnailUri\": \"https://media.amadeus.com/hotels/MCLONGHM/exterior-01-thumb.jpg\",\n          \"caption\": \"Hotel Exterior\",\n          \"width\": 1920,\n          \"height\": 1080,\n          \"format\": \"JPEG\",\n          \"isPrimary\": true\n        },\n        {\n          \"id\": \"media-002\",\n          \"category\": \"ROOM\",\n          \"uri\": \"https://media.amadeus.com/hotels/MCLONGHM/room-deluxe-01.jpg\",\n          \"thumbnailUri\": \"https://media.amadeus.com/hotels/MCLONGHM/room-deluxe-01-thumb.jpg\",\n          \"caption\": \"Deluxe Double Room\",\n          \"width\": 1920,\n          \"height\": 1080,\n          \"format\": \"JPEG\",\n          \"isPrimary\": false\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"count\": 1,\n    \"links\": {\n      \"self\": \"https://api.amadeus.com/v1/reference-data/locations/hotels/by-hotels/media?hotelIds=MCLONGHM\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8553fdc0-8314-4cb5-ab60-ec93847c7daa",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "category",
+                      "value": "EXTERIOR"
+                    },
+                    {
+                      "key": "format",
+                      "value": "JPEG"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter hotelIds.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0973f4f6-782c-40d3-85cb-5858f4344dff",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "category",
+                      "value": "EXTERIOR"
+                    },
+                    {
+                      "key": "format",
+                      "value": "JPEG"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    },\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "076bde04-5d99-4d93-8095-4ecf72351965",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "category",
+                      "value": "EXTERIOR"
+                    },
+                    {
+                      "key": "format",
+                      "value": "JPEG"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    },\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.amadeus.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c33692ec-e29a-4e92-8f53-162bb57e595d",
+    "name": "Amadeus Hotel Content Hotel Media API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Amadeus Hotel Content API provides detailed property information for hotels in the Amadeus inventory, including property descriptions, amenities, facilities, contact details, and media assets such as images and multimedia content. This Enterprise API enables travel platforms to build rich hotel profiles with photos, room images, and comprehensive property descriptions.\nBefore using this API, obtain an access token. See the Authorization Guide for details.\n\nContact Support:\n Name: Amadeus for Developers",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,399 @@
+{
+  "item": [
+    {
+      "id": "1a2dc2b8-5968-4d11-bcb1-a121280409d7",
+      "name": "Hotel Content",
+      "description": {
+        "content": "Operations for retrieving detailed hotel property content.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f646c800-79f9-4f9d-8192-1729e17849ac",
+          "name": "Amadeus Get Hotel Content",
+          "request": {
+            "name": "Amadeus Get Hotel Content",
+            "description": {
+              "content": "Returns detailed content for one or more hotels including property descriptions, amenities, facilities, contact information, geolocation, and media assets such as images and videos. Provide one or more hotel IDs (Amadeus property codes) to retrieve their content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "locations",
+                "hotels",
+                "by-hotels",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hotelIds",
+                  "value": "<string>",
+                  "description": "(Required) Amadeus property codes (8 characters) for which to retrieve content. Up to 20 hotel IDs can be specified per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Language code for the content response (e.g., EN, FR, DE). Defaults to English if not specified."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of content fields to include in the response. Options include: basicInfo, descriptions, amenities, media, contact, location."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.amadeus+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "417b671d-ff51-4ce9-b5a8-eb2f97a030fe",
+              "name": "Successful response with hotel content data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "language",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "basicInfo,descriptions,media,amenities"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"hotelId\": \"MCLONGHM\",\n      \"chainCode\": \"MC\",\n      \"iataCode\": \"LON\",\n      \"name\": \"THE LONGCHAMP HOTEL\",\n      \"basicInfo\": {\n        \"category\": 4,\n        \"rating\": \"FOUR_STARS\",\n        \"numberOfRooms\": 120,\n        \"checkInTime\": \"14:00\",\n        \"checkOutTime\": \"12:00\"\n      },\n      \"descriptions\": [\n        {\n          \"lang\": \"EN\",\n          \"text\": \"A luxury boutique hotel in the heart of London, offering stunning views and exceptional service.\"\n        }\n      ],\n      \"contact\": {\n        \"phone\": \"+44-20-12345678\",\n        \"email\": \"info@thelongchamp.com\",\n        \"website\": \"https://www.thelongchamp.com\"\n      },\n      \"address\": {\n        \"lines\": [\n          \"15 Park Lane\"\n        ],\n        \"postalCode\": \"W1K 1BE\",\n        \"cityName\": \"London\",\n        \"countryCode\": \"GB\"\n      },\n      \"geoCode\": {\n        \"latitude\": 51.508,\n        \"longitude\": -0.145\n      },\n      \"amenities\": [\n        \"WIFI\",\n        \"RESTAURANT\",\n        \"SPA\",\n        \"GYM\",\n        \"PARKING\"\n      ],\n      \"media\": [\n        {\n          \"category\": \"EXTERIOR\",\n          \"uri\": \"https://media.amadeus.com/hotels/MCLONGHM/exterior-01.jpg\",\n          \"caption\": \"Hotel Exterior\"\n        },\n        {\n          \"category\": \"LOBBY\",\n          \"uri\": \"https://media.amadeus.com/hotels/MCLONGHM/lobby-01.jpg\",\n          \"caption\": \"Grand Lobby\"\n        },\n        {\n          \"category\": \"ROOM\",\n          \"uri\": \"https://media.amadeus.com/hotels/MCLONGHM/room-deluxe-01.jpg\",\n          \"caption\": \"Deluxe Room\"\n        }\n      ]\n    }\n  ],\n  \"meta\": {\n    \"count\": 1,\n    \"links\": {\n      \"self\": \"https://api.amadeus.com/v1/reference-data/locations/hotels/by-hotels/content?hotelIds=MCLONGHM\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2d05a78-e019-4c86-8a88-c1986c691730",
+              "name": "Bad request. Invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "language",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "basicInfo,descriptions,media,amenities"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter hotelIds. Must be 8-character Amadeus property codes.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e7003f2-2547-4ed6-b74e-a336edfe443d",
+              "name": "Unauthorized. Access token missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "language",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "basicInfo,descriptions,media,amenities"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    },\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeca73c3-8f4e-4f64-b487-c728b231a2b0",
+              "name": "Not found. No hotels found for the given IDs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "language",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "basicInfo,descriptions,media,amenities"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    },\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7379503c-c871-455d-81b4-81ed0e42f2b5",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "MCLONGHM"
+                    },
+                    {
+                      "key": "language",
+                      "value": "EN"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "basicInfo,descriptions,media,amenities"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    },\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"Invalid value for parameter.\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.amadeus.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a8ec573a-04ab-47b9-9b64-89b4cc19abec",
+    "name": "Amadeus Hotel Content API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Amadeus Hotel Content API provides detailed property information for hotels in the Amadeus inventory, including property descriptions, amenities, facilities, contact details, and media assets such as images and multimedia content. This Enterprise API enables travel platforms to build rich hotel profiles with photos, room images, and comprehensive property descriptions.\nBefore using this API, obtain an access token. See the Authorization Guide for details.\n\nContact Support:\n Name: Amadeus for Developers",
+      "type": "text/plain"
+    }
+  }
+}

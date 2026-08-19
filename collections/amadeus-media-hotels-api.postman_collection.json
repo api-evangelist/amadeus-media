@@ -1,0 +1,920 @@
+{
+  "item": [
+    {
+      "id": "3f9b5978-5b54-4e47-b6eb-959ed6dac138",
+      "name": "Hotels",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40c6254f-08f4-4843-b40f-ab1d4f4aaee6",
+          "name": "Amadeus Search Hotels Using its Unique Id",
+          "request": {
+            "name": "Amadeus Search Hotels Using its Unique Id",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "locations",
+                "hotels",
+                "by-hotels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hotelIds",
+                  "value": "<string>",
+                  "description": "(Required) Amadeus Property Codes (8 chars)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.amadeus+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "999b1ed4-a699-4b3c-9cf4-43ee061fe562",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "ACPAR419"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"chainCode\": \"AC\",\n      \"iataCode\": \"PAR\",\n      \"dupeId\": 700140792,\n      \"name\": \"LE NOTRE DAME\",\n      \"hotelId\": \"ACPAR419\",\n      \"geoCode\": {\n        \"latitude\": 48.85306,\n        \"longitude\": 2.34654\n      },\n      \"address\": {\n        \"countryCode\": \"FR\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"count\": 1,\n    \"links\": {\n      \"self\": \"http://test.api.amadeus.com/reference-data/locations/hotels/by-hotels?hotelIds=ACPAR419\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8569e452-04cd-4800-be94-78c157b0f9c5",
+              "name": "Bad Request\n\n Code | Title  \n-----|-----\n00001 | CHECK FORMAT\n00477 | INVALID FORMAT\n00009 | CHECK CITY CODE\n01157 | INVALID CITY CODE\n03237 | PROPERTY CODE NOT FOUND IN SYSTEM\n01257 | INVALID PROPERTY CODE\n00895 | NOTHING FOUND FOR REQUESTED CITY\n01271 | GUEST RECORD NOT FOUND\n11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "ACPAR419"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"invalid query parameter format\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f07d1c05-a9a9-4cf3-a07d-e7e40da600af",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "ACPAR419"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 404,\n      \"code\": 1797,\n      \"title\": \"NOT FOUND\",\n      \"detail\": \"no response found for this query parameter\",\n      \"source\": {\n        \"parameter\": \"hotelIds\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa2e42f1-79e2-4c2f-9df6-7daea9931251",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-hotels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "ACPAR419"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 500,\n      \"code\": 141,\n      \"title\": \"SYSTEM ERROR HAS OCCURRED\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "804da5a5-0926-42f0-b75e-b650d1d4cc47",
+          "name": "Amadeus Search Hotels in a City",
+          "request": {
+            "name": "Amadeus Search Hotels in a City",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "locations",
+                "hotels",
+                "by-city"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cityCode",
+                  "value": "<string>",
+                  "description": "(Required) Destination city code or airport code. In case of city  code , the search will be done around the city center. Available codes can be found in [IATA table codes](http://www.iata.org/publications/Pages/code-search.aspx) (3 chars IATA Code)."
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "5",
+                  "description": "Maximum distance from the geographical coordinates express in defined units. The default unit is metric kilometer."
+                },
+                {
+                  "disabled": false,
+                  "key": "radiusUnit",
+                  "value": "KM",
+                  "description": "Unit of measurement used to express the radius. It can be either metric kilometer or imperial mile."
+                },
+                {
+                  "disabled": false,
+                  "key": "chainCodes",
+                  "value": "<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>",
+                  "description": "Array of hotel chain codes. Each code is a string consisted of 2 capital alphabetic characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "amenities",
+                  "value": "<string>,<string>,<string>",
+                  "description": "List of amenities."
+                },
+                {
+                  "disabled": false,
+                  "key": "ratings",
+                  "value": "<string>,<string>,<string>,<string>",
+                  "description": "Hotel stars. Up to four values can be requested at the same time in a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "hotelSource",
+                  "value": "ALL",
+                  "description": "Hotel source with values BEDBANK for aggregators, DIRECTCHAIN for GDS/Distribution and ALL for both."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.amadeus+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36b21101-ef13-489b-afd4-3a6ee0bfe8ab",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-city"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cityCode",
+                      "value": "PAR"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "5"
+                    },
+                    {
+                      "key": "radiusUnit",
+                      "value": "KM"
+                    },
+                    {
+                      "key": "chainCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amenities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ratings",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hotelSource",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"chainCode\": \"ZZ\",\n      \"iataCode\": \"NCE\",\n      \"dupeId\": 504813011,\n      \"name\": \"HOTEL 3\",\n      \"hotelId\": \"ZZNCENVX\",\n      \"geoCode\": {\n        \"latitude\": 43.66665,\n        \"longitude\": 7.21465\n      },\n      \"address\": {\n        \"countryCode\": \"FR\"\n      },\n      \"distance\": {\n        \"value\": 0.92,\n        \"unit\": \"KM\"\n      }\n    },\n    {\n      \"chainCode\": \"NN\",\n      \"iataCode\": \"NCE\",\n      \"dupeId\": 700091936,\n      \"name\": \"CAMPANILE NICE - A?ROPORT\",\n      \"hotelId\": \"NNNCE357\",\n      \"geoCode\": {\n        \"latitude\": 43.66686,\n        \"longitude\": 7.21397\n      },\n      \"address\": {\n        \"countryCode\": \"FR\"\n      },\n      \"distance\": {\n        \"value\": 0.96,\n        \"unit\": \"KM\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"count\": 2,\n    \"links\": {\n      \"self\": \"http://test.api.amadeus.com/reference-data/locations/hotels/by-city?cityCode=NCE&radius=1\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86bdd432-c0d9-419b-8ad7-a23c2e94ced4",
+              "name": "Bad Request\n\n Code | Title  \n-----|-----\n00001 | CHECK FORMAT\n00477 | INVALID FORMAT\n00009 | CHECK CITY CODE\n01157 | INVALID CITY CODE\n03237 | PROPERTY CODE NOT FOUND IN SYSTEM\n01257 | INVALID PROPERTY CODE\n00895 | NOTHING FOUND FOR REQUESTED CITY\n01271 | GUEST RECORD NOT FOUND\n11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-city"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cityCode",
+                      "value": "PAR"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "5"
+                    },
+                    {
+                      "key": "radiusUnit",
+                      "value": "KM"
+                    },
+                    {
+                      "key": "chainCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amenities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ratings",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hotelSource",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"invalid query parameter format\",\n      \"source\": {\n        \"parameter\": \"cityCode\",\n        \"example\": \"PAR\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "800d867a-0151-4016-841f-69ee6a233142",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-city"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cityCode",
+                      "value": "PAR"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "5"
+                    },
+                    {
+                      "key": "radiusUnit",
+                      "value": "KM"
+                    },
+                    {
+                      "key": "chainCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amenities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ratings",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hotelSource",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8477,\n      \"code\": 1228,\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"type\": \"string\",\n        \"description\": \"A sample input to guide the user when resolving this issue\"\n      },\n      \"documentation\": \"string\"\n    },\n    {\n      \"status\": 6392,\n      \"code\": 3157,\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"type\": \"string\",\n        \"description\": \"A sample input to guide the user when resolving this issue\"\n      },\n      \"documentation\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a738a6a-1e8b-4fc1-95cd-b17121710d85",
+          "name": "Amadeus Search Hotels Using Geocode",
+          "request": {
+            "name": "Amadeus Search Hotels Using Geocode",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reference-data",
+                "locations",
+                "hotels",
+                "by-geocode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<number>",
+                  "description": "(Required) The latitude of the searched geographical point expressed in geometric degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<number>",
+                  "description": "(Required) The longitude of the searched geographical point expressed in geometric degrees."
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "5",
+                  "description": "Maximum distance from the geographical coordinates expressed in defined units. The default unit is metric kilometer."
+                },
+                {
+                  "disabled": false,
+                  "key": "radiusUnit",
+                  "value": "KM",
+                  "description": "Unit of measurement used to express the radius. It can be either metric kilometer or imperial mile."
+                },
+                {
+                  "disabled": false,
+                  "key": "chainCodes",
+                  "value": "<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>,<string>",
+                  "description": "Array of hotel chain codes. Each code is a string consisted of 2 capital alphabetic characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "amenities",
+                  "value": "<string>,<string>,<string>",
+                  "description": "List of amenities."
+                },
+                {
+                  "disabled": false,
+                  "key": "ratings",
+                  "value": "<string>,<string>,<string>,<string>",
+                  "description": "Hotel stars. Up to four values can be requested at the same time in a comma separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "hotelSource",
+                  "value": "ALL",
+                  "description": "Hotel source with values BEDBANK for aggregators, DIRECTCHAIN for GDS/Distribution and ALL for both."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.amadeus+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "391cf211-e2f9-4b53-88ee-f26d55fe748a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-geocode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "latitude",
+                      "value": "41.397158"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "2.160873"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "5"
+                    },
+                    {
+                      "key": "radiusUnit",
+                      "value": "KM"
+                    },
+                    {
+                      "key": "chainCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amenities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ratings",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hotelSource",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"chainCode\": \"OI\",\n      \"iataCode\": \"SXD\",\n      \"dupeId\": 700118746,\n      \"name\": \"HOTEL OMEGA - VALBONNE\",\n      \"hotelId\": \"OISXD968\",\n      \"geoCode\": {\n        \"latitude\": 43.61428,\n        \"longitude\": 7.05464\n      },\n      \"address\": {\n        \"countryCode\": \"FR\"\n      },\n      \"distance\": {\n        \"value\": 0.73,\n        \"unit\": \"KM\"\n      }\n    },\n    {\n      \"chainCode\": \"DH\",\n      \"iataCode\": \"SCR\",\n      \"dupeId\": 505001770,\n      \"name\": \"CHECK SINGLE CIF DHSCRMS8\",\n      \"hotelId\": \"DHSCRMS8\",\n      \"geoCode\": {\n        \"latitude\": 43.62215,\n        \"longitude\": 7.04024\n      },\n      \"distance\": {\n        \"value\": 0.82,\n        \"unit\": \"KM\"\n      }\n    },\n    {\n      \"chainCode\": \"DH\",\n      \"iataCode\": \"VLI\",\n      \"dupeId\": 504621595,\n      \"name\": \"CHECK SINGLE CIF DHVLIMS8\",\n      \"hotelId\": \"DHVLIMS8\",\n      \"geoCode\": {\n        \"latitude\": 43.62215,\n        \"longitude\": 7.04024\n      },\n      \"distance\": {\n        \"value\": 0.82,\n        \"unit\": \"KM\"\n      }\n    },\n    {\n      \"chainCode\": \"DH\",\n      \"iataCode\": \"AET\",\n      \"dupeId\": 504621441,\n      \"name\": \"CHECK SINGLE CIF DHAETMS8\",\n      \"hotelId\": \"DHAETMS8\",\n      \"geoCode\": {\n        \"latitude\": 43.62215,\n        \"longitude\": 7.04024\n      },\n      \"address\": {\n        \"countryCode\": \"US\"\n      },\n      \"distance\": {\n        \"value\": 0.82,\n        \"unit\": \"KM\"\n      }\n    },\n    {\n      \"chainCode\": \"DH\",\n      \"iataCode\": \"NYC\",\n      \"dupeId\": 504621445,\n      \"name\": \"CHECK SINGLE CIF DHNYCMS8\",\n      \"hotelId\": \"DHNYCMS8\",\n      \"geoCode\": {\n        \"latitude\": 43.62215,\n        \"longitude\": 7.04024\n      },\n      \"address\": {\n        \"countryCode\": \"US\"\n      },\n      \"distance\": {\n        \"value\": 0.82,\n        \"unit\": \"KM\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"count\": 5,\n    \"links\": {\n      \"self\": \"http://test.api.amadeus.com/reference-data/locations/hotels/by-geocode?latitude=43.61999752&longitude=7.0499998&radius=1\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87bc2523-cfe9-4f5d-a599-9a3f2f7cab13",
+              "name": "Bad Request\n\n Code | Title  \n-----|-----\n00001 | CHECK FORMAT\n00477 | INVALID FORMAT\n00009 | CHECK CITY CODE\n01157 | INVALID CITY CODE\n03237 | PROPERTY CODE NOT FOUND IN SYSTEM\n01257 | INVALID PROPERTY CODE\n00895 | NOTHING FOUND FOR REQUESTED CITY\n01271 | GUEST RECORD NOT FOUND\n11126 | NO PROPERTIES FOUND FOR RP/DI REQUESTED",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-geocode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "latitude",
+                      "value": "41.397158"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "2.160873"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "5"
+                    },
+                    {
+                      "key": "radiusUnit",
+                      "value": "KM"
+                    },
+                    {
+                      "key": "chainCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amenities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ratings",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hotelSource",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 400,\n      \"code\": 477,\n      \"title\": \"INVALID FORMAT\",\n      \"detail\": \"invalid query parameter format\",\n      \"source\": {\n        \"parameter\": \"longitude\",\n        \"example\": 41.397158\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d2b3725-d2d9-4024-85a8-2300335af143",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reference-data",
+                    "locations",
+                    "hotels",
+                    "by-geocode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "latitude",
+                      "value": "41.397158"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "2.160873"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "5"
+                    },
+                    {
+                      "key": "radiusUnit",
+                      "value": "KM"
+                    },
+                    {
+                      "key": "chainCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amenities",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ratings",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hotelSource",
+                      "value": "ALL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amadeus+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amadeus+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"status\": 8477,\n      \"code\": 1228,\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"type\": \"string\",\n        \"description\": \"A sample input to guide the user when resolving this issue\"\n      },\n      \"documentation\": \"string\"\n    },\n    {\n      \"status\": 6392,\n      \"code\": 3157,\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"type\": \"string\",\n        \"description\": \"A sample input to guide the user when resolving this issue\"\n      },\n      \"documentation\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.amadeus.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4bdb96b6-9708-480f-8c78-59bbe1be0f84",
+    "name": "Amadeus Hotel Content Hotels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Amadeus Hotel Content API provides detailed property information for hotels in the Amadeus inventory, including property descriptions, amenities, facilities, contact details, and media assets such as images and multimedia content. This Enterprise API enables travel platforms to build rich hotel profiles with photos, room images, and comprehensive property descriptions.\nBefore using this API, obtain an access token. See the Authorization Guide for details.\n\nContact Support:\n Name: Amadeus for Developers",
+      "type": "text/plain"
+    }
+  }
+}
