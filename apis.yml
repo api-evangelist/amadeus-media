@@ -4,6 +4,12 @@ name: Amadeus Media
 tags:
   - Content
   - Hotels
+  - Image
+  - Media
+  - Travel
+tags_raw:
+  - Content
+  - Hotels
   - Images
   - Media
   - Travel
