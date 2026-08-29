@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Amadeus Hotel Content Hotels API
   version: 1.0.0
@@ -405,7 +405,6 @@ paths:
           type: number
           maximum: 180
           minimum: -180
-          exclusiveMaximum: false
         in: query
         name: longitude
         required: true
@@ -517,6 +516,57 @@ paths:
         description: Hotel source with values BEDBANK for aggregators, DIRECTCHAIN for GDS/Distribution and ALL for both.
 components:
   schemas:
+    Error_400:
+      type: object
+      description: A set of errors
+      title: Error 400
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            description: The Error Definition
+            title: Error
+            properties:
+              status:
+                type: integer
+                description: The [HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) of this response. This is present only in terminal errors which cause an unsuccessful response. In the case of multiple errors, they must all have the same status.
+              code:
+                type: integer
+                description: A machine-readable error code from the Amadeus Canned Messages table, that will enable the API Consumers code to handle this type of error
+              title:
+                type: string
+                description: An error title from the Canned Messages table with a 1:1 correspondence to the error code. This may be localized
+              detail:
+                type: string
+                description: An easy-to-read explanation specific to this occurrence of the problem. It should give the API consumer an idea of what went wrong and how to recover from it. Like the title, this field’s value can be localized.
+              source:
+                type: object
+                title: Error_Source
+                properties:
+                  parameter:
+                    type: string
+                    description: The key of the URI path or query parameter that caused the error
+                  pointer:
+                    type: string
+                    description: A JSON Pointer [RFC6901] to the associated entity in the request body that caused this error
+                  example:
+                    type: string
+                    description: A sample input to guide the user when resolving this issue
+              documentation:
+                type: string
+                format: url
+                description: A link to a web page or file with further documentation to help the API consumer resolve this error
+    HotelSearchResponse:
+      title: Hotel Search Response
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hotel'
+        meta:
+          $ref: '#/components/schemas/Meta'
     Error_500:
       type: object
       description: A set of errors
@@ -563,88 +613,6 @@ components:
         - status: 500
           code: 141
           title: SYSTEM ERROR HAS OCCURRED
-    Error_400:
-      type: object
-      description: A set of errors
-      title: Error 400
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            description: The Error Definition
-            title: Error
-            properties:
-              status:
-                type: integer
-                description: The [HTTP status code](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) of this response. This is present only in terminal errors which cause an unsuccessful response. In the case of multiple errors, they must all have the same status.
-              code:
-                type: integer
-                description: A machine-readable error code from the Amadeus Canned Messages table, that will enable the API Consumers code to handle this type of error
-              title:
-                type: string
-                description: An error title from the Canned Messages table with a 1:1 correspondence to the error code. This may be localized
-              detail:
-                type: string
-                description: An easy-to-read explanation specific to this occurrence of the problem. It should give the API consumer an idea of what went wrong and how to recover from it. Like the title, this field’s value can be localized.
-              source:
-                type: object
-                title: Error_Source
-                properties:
-                  parameter:
-                    type: string
-                    description: The key of the URI path or query parameter that caused the error
-                  pointer:
-                    type: string
-                    description: A JSON Pointer [RFC6901] to the associated entity in the request body that caused this error
-                  example:
-                    type: string
-                    description: A sample input to guide the user when resolving this issue
-              documentation:
-                type: string
-                format: url
-                description: A link to a web page or file with further documentation to help the API consumer resolve this error
-    Meta:
-      type: object
-      description: Meta information about the returned object(s) in "data"
-      title: Meta
-      properties:
-        count:
-          type: integer
-          format: int64
-          description: Total number of object(s) retrieved
-          minimum: 0
-          exclusiveMinimum: false
-        sort:
-          type: array
-          description: Sorting fields criteria and their associated priority and direction. Sorting priority is indicated by the order of the strings within the array. E.g. sort=title,size means that items are ordered by title and then, as a second ordering by size. A '-' sign before the search criteria indicates a descending ordering direction (Z to A), whereas no sign indicates a ascending direction (A to Z). E.g. sort=-title mean that the objects are ordered by title in reverse order (Z to A).
-          items:
-            type: string
-        links:
-          type: object
-          title: Links
-          description: Links related to the returned object(s)
-          properties:
-            self:
-              type: string
-              format: url
-              description: Link to the same page.
-            first:
-              type: string
-              format: url
-              description: Link to the first page.
-            prev:
-              type: string
-              format: url
-              description: Link to the previous page.
-            next:
-              type: string
-              format: url
-              description: Link to the next page.
-            last:
-              type: string
-              format: url
-              description: Link to the last page.
     Hotel:
       title: Hotel
       description: Hotel location information
@@ -689,18 +657,14 @@ components:
                   format: float
                   description: Latitude of the position expressed in decimal degrees (WSG 84), e.g. 6.244203. A positive value denotes northern hemisphere or the equator, and a negative value denotes southern hemisphere. The number of digits to represent the precision of the coordinate.
                   minimum: -90
-                  exclusiveMinimum: false
                   maximum: 90
-                  exclusiveMaximum: false
                   example: 48.85837
                 longitude:
                   type: number
                   format: float
                   description: Longitude of the position expressed in decimal degrees (WSG 84), e.g. -75.581211. A positive value denotes east longitude or the prime meridian, and a negative value denotes west longitude.  The number of digits to represent the precision of the coordinate.
                   minimum: -180
-                  exclusiveMinimum: false
                   maximum: 180
-                  exclusiveMaximum: false
                   example: 2.294481
               title: GeoCode
         - type: object
@@ -761,6 +725,46 @@ components:
             type: string
             description: Last time the content was updated by a provider.
             format: date-time
+    Meta:
+      type: object
+      description: Meta information about the returned object(s) in "data"
+      title: Meta
+      properties:
+        count:
+          type: integer
+          format: int64
+          description: Total number of object(s) retrieved
+          minimum: 0
+        sort:
+          type: array
+          description: Sorting fields criteria and their associated priority and direction. Sorting priority is indicated by the order of the strings within the array. E.g. sort=title,size means that items are ordered by title and then, as a second ordering by size. A '-' sign before the search criteria indicates a descending ordering direction (Z to A), whereas no sign indicates a ascending direction (A to Z). E.g. sort=-title mean that the objects are ordered by title in reverse order (Z to A).
+          items:
+            type: string
+        links:
+          type: object
+          title: Links
+          description: Links related to the returned object(s)
+          properties:
+            self:
+              type: string
+              format: url
+              description: Link to the same page.
+            first:
+              type: string
+              format: url
+              description: Link to the first page.
+            prev:
+              type: string
+              format: url
+              description: Link to the previous page.
+            next:
+              type: string
+              format: url
+              description: Link to the next page.
+            last:
+              type: string
+              format: url
+              description: Link to the last page.
     Error_404:
       type: object
       description: A set of errors
@@ -810,16 +814,6 @@ components:
           detail: no response found for this query parameter
           source:
             parameter: hotelIds
-    HotelSearchResponse:
-      title: Hotel Search Response
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Hotel'
-        meta:
-          $ref: '#/components/schemas/Meta'
   securitySchemes:
     BearerAuth:
       type: http

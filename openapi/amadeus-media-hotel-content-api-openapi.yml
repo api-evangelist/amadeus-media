@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Amadeus Hotel Content API
   version: 1.0.0
@@ -157,17 +157,33 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    HotelContentResponse:
+    MediaAsset:
       type: object
-      description: Response containing hotel content data for one or more hotels.
+      description: A single media asset (image or video) for a hotel property.
       properties:
-        data:
-          type: array
-          description: Array of hotel content objects.
-          items:
-            $ref: '#/components/schemas/HotelContent'
-        meta:
-          $ref: '#/components/schemas/Meta'
+        category:
+          type: string
+          description: Media category.
+          enum:
+          - EXTERIOR
+          - LOBBY
+          - ROOM
+          - RESTAURANT
+          - POOL
+          - SPA
+          - GYM
+          - MEETING_ROOM
+          - COMMON_AREA
+          example: EXTERIOR
+        uri:
+          type: string
+          format: uri
+          description: URL of the full-size media asset.
+          example: https://media.amadeus.com/hotels/MCLONGHM/exterior-01.jpg
+        caption:
+          type: string
+          description: Caption or alt text for the media asset.
+          example: Hotel Exterior
     GeoCode:
       type: object
       description: Geographic coordinates of the hotel.
@@ -182,33 +198,41 @@ components:
           format: double
           description: Longitude in decimal degrees.
           example: -0.145
-    HotelAddress:
+    Error:
       type: object
-      description: Hotel physical address.
+      description: Individual error detail.
       properties:
-        lines:
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        code:
+          type: integer
+          description: Amadeus error code.
+          example: 477
+        title:
+          type: string
+          description: Short error title.
+          example: INVALID FORMAT
+        detail:
+          type: string
+          description: Detailed error description.
+          example: Invalid value for parameter.
+        source:
+          type: object
+          properties:
+            parameter:
+              type: string
+              description: Name of the parameter that caused the error.
+              example: hotelIds
+    ErrorResponse:
+      type: object
+      description: Error response from the API.
+      properties:
+        errors:
           type: array
-          description: Street address lines.
           items:
-            type: string
-          example:
-          - 15 Park Lane
-        postalCode:
-          type: string
-          description: Postal or ZIP code.
-          example: W1K 1BE
-        cityName:
-          type: string
-          description: City name.
-          example: London
-        countryCode:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-          example: GB
-        stateCode:
-          type: string
-          description: State or province code (where applicable).
-          example: ENG
+            $ref: '#/components/schemas/Error'
     HotelContent:
       type: object
       description: Detailed content for a single hotel property.
@@ -256,33 +280,18 @@ components:
           description: List of hotel media assets.
           items:
             $ref: '#/components/schemas/MediaAsset'
-    MediaAsset:
+    HotelDescription:
       type: object
-      description: A single media asset (image or video) for a hotel property.
+      description: Hotel description in a specific language.
       properties:
-        category:
+        lang:
           type: string
-          description: Media category.
-          enum:
-          - EXTERIOR
-          - LOBBY
-          - ROOM
-          - RESTAURANT
-          - POOL
-          - SPA
-          - GYM
-          - MEETING_ROOM
-          - COMMON_AREA
-          example: EXTERIOR
-        uri:
+          description: ISO 639-1 language code.
+          example: EN
+        text:
           type: string
-          format: uri
-          description: URL of the full-size media asset.
-          example: https://media.amadeus.com/hotels/MCLONGHM/exterior-01.jpg
-        caption:
-          type: string
-          description: Caption or alt text for the media asset.
-          example: Hotel Exterior
+          description: Hotel description text.
+          example: A luxury boutique hotel offering exceptional service and stunning city views.
     HotelBasicInfo:
       type: object
       description: Basic hotel classification information.
@@ -307,6 +316,33 @@ components:
           type: string
           description: Standard check-out time (HH:MM format).
           example: '12:00'
+    HotelAddress:
+      type: object
+      description: Hotel physical address.
+      properties:
+        lines:
+          type: array
+          description: Street address lines.
+          items:
+            type: string
+          example:
+          - 15 Park Lane
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+          example: W1K 1BE
+        cityName:
+          type: string
+          description: City name.
+          example: London
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          example: GB
+        stateCode:
+          type: string
+          description: State or province code (where applicable).
+          example: ENG
     Meta:
       type: object
       description: Metadata about the response.
@@ -323,53 +359,6 @@ components:
               format: uri
               description: URL of the current request.
               example: https://api.amadeus.com/v1/reference-data/locations/hotels/by-hotels/content
-    ErrorResponse:
-      type: object
-      description: Error response from the API.
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    HotelDescription:
-      type: object
-      description: Hotel description in a specific language.
-      properties:
-        lang:
-          type: string
-          description: ISO 639-1 language code.
-          example: EN
-        text:
-          type: string
-          description: Hotel description text.
-          example: A luxury boutique hotel offering exceptional service and stunning city views.
-    Error:
-      type: object
-      description: Individual error detail.
-      properties:
-        status:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        code:
-          type: integer
-          description: Amadeus error code.
-          example: 477
-        title:
-          type: string
-          description: Short error title.
-          example: INVALID FORMAT
-        detail:
-          type: string
-          description: Detailed error description.
-          example: Invalid value for parameter.
-        source:
-          type: object
-          properties:
-            parameter:
-              type: string
-              description: Name of the parameter that caused the error.
-              example: hotelIds
     HotelContact:
       type: object
       description: Hotel contact information.
@@ -392,6 +381,17 @@ components:
           format: uri
           description: Hotel website URL.
           example: https://www.hotel.com
+    HotelContentResponse:
+      type: object
+      description: Response containing hotel content data for one or more hotels.
+      properties:
+        data:
+          type: array
+          description: Array of hotel content objects.
+          items:
+            $ref: '#/components/schemas/HotelContent'
+        meta:
+          $ref: '#/components/schemas/Meta'
   securitySchemes:
     BearerAuth:
       type: http
