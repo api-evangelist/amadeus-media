@@ -218,6 +218,8 @@ apis:
       - type: JSONLD
         url: json-ld/amadeus-hotel-list-context.jsonld
 common:
+  - type: Website
+    url: https://www.amadeus.com/
   - type: Overlay
     url: overlays/amadeus-media-hotel-content-overlay.yaml
   - type: PostmanWorkspace
