@@ -1,20 +1,27 @@
 {
   "provider": "amadeus-media",
   "sources": [
-    "amadeus-media-hotel-content-api-openapi.yml",
-    "amadeus-media-hotel-media-api-openapi.yml",
-    "amadeus-media-hotels-api-openapi.yml"
+    "_original/amadeus-media-hotel-list-openapi.yaml",
+    "_ae-authored/amadeus-media-hotel-content-openapi.yaml"
   ],
   "outputs": [
+    "amadeus-media-hotels-api-openapi.yml",
     "amadeus-media-hotel-content-api-openapi.yml",
-    "amadeus-media-hotel-media-api-openapi.yml",
-    "amadeus-media-hotels-api-openapi.yml"
+    "amadeus-media-hotel-media-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amadeus-media-hotel-list-openapi.yaml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "amadeus-media-hotel-list-openapi.yaml: declared missing tag: Hotels",
+    "amadeus-media-hotel-content-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "amadeus-media-hotel-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amadeus-media-hotel-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amadeus-media-hotels-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

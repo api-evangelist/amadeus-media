@@ -1,24 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Amadeus Hotel Content Hotels API
-  version: 1.0.0
-  description: 'The Amadeus Hotel Content API provides detailed property information for hotels in the Amadeus inventory, including property descriptions, amenities, facilities, contact details, and media assets such as images and multimedia content. This Enterprise API enables travel platforms to build rich hotel profiles with photos, room images, and comprehensive property descriptions.
-
-    Before using this API, obtain an access token. See the Authorization Guide for details.'
-  contact:
-    name: Amadeus for Developers
-    url: https://developers.amadeus.com/support
-  license:
-    name: Amadeus Terms and Conditions
-    url: https://developers.amadeus.com/legal/terms-and-conditions
-  x-generated-from: documentation
+  title: Hotel List Hotels API
+  version: 1.0.4
+  description: Before using the API you will need to get an access token. Please read our **Authorization Guide** for more information on how to get your token.
 servers:
-- url: https://api.amadeus.com/v1
-  description: Production server
 - url: https://test.api.amadeus.com/v1
-  description: Test server
-security:
-- BearerAuth: []
 tags:
 - name: Hotels
 paths:
@@ -557,20 +543,10 @@ components:
                 type: string
                 format: url
                 description: A link to a web page or file with further documentation to help the API consumer resolve this error
-    HotelSearchResponse:
-      title: Hotel Search Response
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Hotel'
-        meta:
-          $ref: '#/components/schemas/Meta'
-    Error_500:
+    Error_404:
       type: object
       description: A set of errors
-      title: Error 500
+      title: Error 404
       properties:
         errors:
           type: array
@@ -610,9 +586,12 @@ components:
                 description: A link to a web page or file with further documentation to help the API consumer resolve this error
       example:
         errors:
-        - status: 500
-          code: 141
-          title: SYSTEM ERROR HAS OCCURRED
+        - status: 404
+          code: 1797
+          title: NOT FOUND
+          detail: no response found for this query parameter
+          source:
+            parameter: hotelIds
     Hotel:
       title: Hotel
       description: Hotel location information
@@ -765,10 +744,10 @@ components:
               type: string
               format: url
               description: Link to the last page.
-    Error_404:
+    Error_500:
       type: object
       description: A set of errors
-      title: Error 404
+      title: Error 500
       properties:
         errors:
           type: array
@@ -808,14 +787,16 @@ components:
                 description: A link to a web page or file with further documentation to help the API consumer resolve this error
       example:
         errors:
-        - status: 404
-          code: 1797
-          title: NOT FOUND
-          detail: no response found for this query parameter
-          source:
-            parameter: hotelIds
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      description: OAuth2 Bearer token. Obtain a token using the Amadeus Authorization API at https://test.api.amadeus.com/v1/security/oauth2/token.
+        - status: 500
+          code: 141
+          title: SYSTEM ERROR HAS OCCURRED
+    HotelSearchResponse:
+      title: Hotel Search Response
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hotel'
+        meta:
+          $ref: '#/components/schemas/Meta'

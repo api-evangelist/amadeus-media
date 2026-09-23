@@ -143,54 +143,32 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    HotelMediaData:
+    Meta:
       type: object
-      description: Media assets for a single hotel.
+      description: Metadata about the response.
       properties:
-        hotelId:
-          type: string
-          description: Amadeus property code.
-          example: MCLONGHM
-        media:
-          type: array
-          description: List of media assets for the hotel.
-          items:
-            $ref: '#/components/schemas/HotelMediaItem'
-    Error:
-      type: object
-      description: Individual error detail.
-      properties:
-        status:
+        count:
           type: integer
-          description: HTTP status code.
-          example: 400
-        code:
-          type: integer
-          description: Amadeus error code.
-          example: 477
-        title:
-          type: string
-          description: Short error title.
-          example: INVALID FORMAT
-        detail:
-          type: string
-          description: Detailed error description.
-          example: Invalid value for parameter.
-        source:
+          description: Number of results returned.
+          example: 1
+        links:
           type: object
           properties:
-            parameter:
+            self:
               type: string
-              description: Name of the parameter that caused the error.
-              example: hotelIds
-    ErrorResponse:
+              format: uri
+              description: URL of the current request.
+              example: https://api.amadeus.com/v1/reference-data/locations/hotels/by-hotels/content
+    HotelMediaResponse:
       type: object
-      description: Error response from the API.
+      description: Response containing media assets for one or more hotels.
       properties:
-        errors:
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/HotelMediaData'
+        meta:
+          $ref: '#/components/schemas/Meta'
     HotelMediaItem:
       type: object
       description: A detailed media item with dimensions and format information.
@@ -237,32 +215,54 @@ components:
           type: boolean
           description: Indicates whether this is the primary/featured image for this category.
           example: true
-    Meta:
+    ErrorResponse:
       type: object
-      description: Metadata about the response.
+      description: Error response from the API.
       properties:
-        count:
-          type: integer
-          description: Number of results returned.
-          example: 1
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-              format: uri
-              description: URL of the current request.
-              example: https://api.amadeus.com/v1/reference-data/locations/hotels/by-hotels/content
-    HotelMediaResponse:
-      type: object
-      description: Response containing media assets for one or more hotels.
-      properties:
-        data:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/HotelMediaData'
-        meta:
-          $ref: '#/components/schemas/Meta'
+            $ref: '#/components/schemas/Error'
+    HotelMediaData:
+      type: object
+      description: Media assets for a single hotel.
+      properties:
+        hotelId:
+          type: string
+          description: Amadeus property code.
+          example: MCLONGHM
+        media:
+          type: array
+          description: List of media assets for the hotel.
+          items:
+            $ref: '#/components/schemas/HotelMediaItem'
+    Error:
+      type: object
+      description: Individual error detail.
+      properties:
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        code:
+          type: integer
+          description: Amadeus error code.
+          example: 477
+        title:
+          type: string
+          description: Short error title.
+          example: INVALID FORMAT
+        detail:
+          type: string
+          description: Detailed error description.
+          example: Invalid value for parameter.
+        source:
+          type: object
+          properties:
+            parameter:
+              type: string
+              description: Name of the parameter that caused the error.
+              example: hotelIds
   securitySchemes:
     BearerAuth:
       type: http
